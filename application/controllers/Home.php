@@ -33,9 +33,10 @@ class Home extends CI_Controller {
 			$user = $login->row();
 			if($user) {
 				$status = $user->hak_akses;
-				if ($status == 'super_admin'){	
+				if ($status == 'super_admin'){
 					$this->session->username = $user->username;
-					redirect('super_admin/index.php');
+					$this->session->status = $user->status;
+					redirect("$user->status/home.php");
 				}
 			}else{
 				echo "<script>alert('Username dan Password yang anda masukkan salah Silahkan masukkan kembali');login.php'</script>\n";
