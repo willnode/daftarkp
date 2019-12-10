@@ -18,8 +18,9 @@ class Home extends CI_Controller {
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 			$login = $this->db->get_where('login', ['username' => $username, 'password' => $password]);
-			$user = $login->row();
-			if($user) {
+			$result = $login->result();
+			if(count( $result ) > 0) {
+				$user = $result[0];
 				$this->session->username = $user->username;
 				$this->session->role = $user->role;
 				redirect("$user->role/");
@@ -29,5 +30,11 @@ class Home extends CI_Controller {
 		} else {
 			$this->load->view('static/login');
 		}
+	}
+	public function logout()
+	{
+		session_destroy();
+		redirect("login");
+
 	}
 }

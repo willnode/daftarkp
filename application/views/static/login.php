@@ -18,6 +18,7 @@
           <div class="card-group">
             <div class="card p-4">
               <div class="card-body">
+              <form action="" method="post">
                 <h1>Login</h1>
                 <p class="text-muted">Sign In to your account</p>
                 <div class="input-group mb-3">
@@ -26,7 +27,7 @@
                       <i class="icon-user"></i>
                     </span>
                   </div>
-                  <input class="form-control" type="text" placeholder="Username">
+                  <input class="form-control" type="text" name="username" placeholder="Username">
                 </div>
                 <div class="input-group mb-4">
                   <div class="input-group-prepend">
@@ -34,13 +35,14 @@
                       <i class="icon-lock"></i>
                     </span>
                   </div>
-                  <input class="form-control" type="password" placeholder="Password">
+                  <input class="form-control" type="password" name="password" placeholder="Password">
                 </div>
                 <div class="row">
                   <div class="col-6">
-                    <button class="btn btn-primary px-4" type="button">Login</button>
+                    <input type="submit" value="Login" class="btn btn-primary px-4">
                   </div>
                 </div>
+              </form>
               </div>
             </div>
           </div>
@@ -48,11 +50,5 @@
       </div>
     </div>
     <!-- CoreUI and necessary plugins-->
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="node_modules/pace-progress/pace.min.js"></script>
-    <script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
-    <script src="node_modules/@coreui/coreui/dist/js/coreui.min.js"></script>
   </body>
 </html>
