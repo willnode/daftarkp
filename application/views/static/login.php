@@ -8,6 +8,7 @@
 	<script src="<?=base_url('vendors/jquery/jquery.min.js')?>"></script>
 	<script src="<?=base_url('vendors/bootstrap/bootstrap.min.js')?>"></script>
 	<script src="<?=base_url('vendors/coreui/js/coreui.min.js')?>"></script>
+
 	<script src="<?=base_url('assets/style.css')?>"></script>
 	<link rel="icon" href="<?=base_url('assets/logo.png')?>">
 </head>
@@ -32,7 +33,7 @@
                 <div class="input-group mb-4">
                   <div class="input-group-prepend">
                     <span class="input-group-text">
-                      <i class="icon-lock"></i>
+                      <i class="icon-lock-locked"></i>
                     </span>
                   </div>
                   <input class="form-control" type="password" name="password" placeholder="Password">
