@@ -6,27 +6,34 @@
                 <i class="nav-icon icon-speedometer"></i> Dashboard
               </a>
             </li>
-            <li class="nav-title">Pra-KP</li>
             <li class="nav-item">
               <a class="nav-link" href="<?=base_url('admin/mhs')?>">
                 <i class="nav-icon icon-drop"></i>Input Mahasiswa</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?=base_url('admin/pengantar')?>">
-                <i class="nav-icon icon-pencil"></i> Surat Pengantar</a>
-            </li>
-            <li class="nav-title">Progres KP</li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?=base_url('admin/jadwal')?>">
-                <i class="nav-icon icon-pencil"></i>Pembukaan Jadwal</a>
+                <i class="nav-icon icon-pencil"></i> Rekap Surat Pengantar</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=base_url('admin/sidang')?>">
-                <i class="nav-icon icon-pencil"></i> Pendaftaran Sidang</a>
+              <a class="nav-link" href="<?=base_url('/daftar-sidang')?>">
+                <i class="nav-icon icon-pencil"></i> Rekap Pendaftaran</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=base_url('admin/penjadwalan')?>">
-                <i class="nav-icon icon-pencil"></i> Penjadwalan Sidang</a>
+              <a class="nav-link" href="<?=base_url('/jadwal-sidang')?>">
+                <i class="nav-icon icon-pencil"></i> Rekap Jadwal</a>
+            </li>
+            <li class="nav-title">Post-Sidang KP</li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?=base_url('/nilai-sidang')?>">
+                <i class="nav-icon icon-pencil"></i> Rekap Nilai</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?=base_url('/revisi-sidang')?>">
+                <i class="nav-icon icon-pencil"></i> Rekap Revisi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?=base_url('/berkas-sidang')?>">
+                <i class="nav-icon icon-pencil"></i> Rekap Berkas</a>
             </li>
           </ul>
           

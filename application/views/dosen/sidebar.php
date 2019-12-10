@@ -18,24 +18,24 @@
             <li class="nav-title">Progres KP</li>
             <li class="nav-item">
               <a class="nav-link" href="<?=base_url('/daftar-sidang')?>">
-                <i class="nav-icon icon-pencil"></i> Pendaftaran Sidang</a>
+                <i class="nav-icon icon-pencil"></i> Rekap Pendaftaran</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?=base_url('/jadwal-sidang')?>">
-                <i class="nav-icon icon-pencil"></i> Jadwal Sidang</a>
+                <i class="nav-icon icon-pencil"></i> Rekap Jadwal</a>
             </li>
             <li class="nav-title">Post-Sidang KP</li>
             <li class="nav-item">
               <a class="nav-link" href="<?=base_url('/nilai-sidang')?>">
-                <i class="nav-icon icon-pencil"></i> Nilai</a>
+                <i class="nav-icon icon-pencil"></i> Rekap Nilai</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?=base_url('/revisi-sidang')?>">
-                <i class="nav-icon icon-pencil"></i> Revisi</a>
+                <i class="nav-icon icon-pencil"></i> Rekap Revisi</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?=base_url('/berkas-sidang')?>">
-                <i class="nav-icon icon-pencil"></i> Pengumpulan Berkas</a>
+                <i class="nav-icon icon-pencil"></i> Rekap Berkas</a>
             </li>
           </ul>
           
