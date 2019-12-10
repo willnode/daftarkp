@@ -8,7 +8,7 @@
 	<script src="<?=base_url('vendors/jquery/jquery.min.js')?>"></script>
 	<script src="<?=base_url('vendors/bootstrap/bootstrap.min.js')?>"></script>
 	<script src="<?=base_url('vendors/coreui/js/coreui.min.js')?>"></script>
-	<link rel="icon" href="<?=base_url('assets/favicon.png')?>">
+	<link rel="icon" href="<?=base_url('assets/logo.png')?>">
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
 <div class="app-body">
@@ -18,7 +18,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navbar-brand" href="#">
-        <img class="navbar-brand-full" src="img/brand/logo.svg" width="89" height="25" alt="CoreUI Logo">
+        <img class="navbar-brand-full" src="assets/logo.png" width="89" height="25" alt="CoreUI Logo">
         <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo">
       </a>
       <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
