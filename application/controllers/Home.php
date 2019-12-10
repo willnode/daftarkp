@@ -6,10 +6,9 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		if ($this->session->userdata('role')) {
-			redirect("$user->role/");
+			redirect($this->session->role);
 		} else {
 			redirect("login");
-
 		}
 	}
 	public function login()
