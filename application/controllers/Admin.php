@@ -13,21 +13,21 @@ class Admin extends CI_Controller {
 	public function mhs()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('admin/home');
+		$this->load->view('mahasiswa/manage');
 		$this->load->view('widget/footer');
 	}
 
 	public function pengantar()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('admin/home');
+		$this->load->view('surat_pengantar/home');
 		$this->load->view('widget/footer');
 	}
 
 	public function jadwal()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('admin/home');
+		$this->load->view('sidang-dosen/jadwal');
 		$this->load->view('widget/footer');
 	}
 

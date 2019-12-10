@@ -27,10 +27,10 @@
       </button>
       <ul class="nav navbar-nav d-md-down-none ml-auto">
         <li class="nav-item px-3">
-          <a class="nav-link" href="#">Dashboard</a>
+          <a class="nav-link" href="<?=base_url('')?>">Dashboard</a>
         </li>
         <li class="nav-item px-3">
-          <a class="nav-link" href="#">Logout</a>
+          <a class="nav-link" href="<?=base_url('logout')?>">Logout</a>
         </li>
       </ul>
     </header>
