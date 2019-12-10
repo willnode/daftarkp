@@ -44,7 +44,6 @@
                 <span class="badge badge-primary">NEW</span>
               </a>
             </li>
-            <li class="nav-title">Mahasiswa</li>
             <li class="nav-item">
               <a class="nav-link" href="colors.html">
                 <i class="nav-icon icon-drop"></i>Surat Pengantar</a>
@@ -65,7 +64,25 @@
               <a class="nav-link" href="typography.html">
                 <i class="nav-icon icon-pencil"></i> Pengumpulan Berkas</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="colors.html">
+                <i class="nav-icon icon-drop"></i>Input Mahasiswa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="colors.html">
+                <i class="nav-icon icon-drop"></i>Buka Pendaftaran</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="colors.html">
+                <i class="nav-icon icon-drop"></i>Penjadwalan Sidang</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="colors.html">
+                <i class="nav-icon icon-drop"></i>Penilaian</a>
+            </li>
+            
           </ul>
+          
         </nav>
         <button class="sidebar-minimizer brand-minimizer" type="button"></button>
       </div>
