@@ -20,7 +20,9 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('home');
+		$this->load->view('widget/header');
+		$this->load->view('static/home');
+		$this->load->view('widget/footer');
 	}
 	public function login()
 	{
