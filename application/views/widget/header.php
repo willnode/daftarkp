@@ -8,6 +8,7 @@
 	<script src="<?=base_url('vendors/jquery/jquery.min.js')?>"></script>
 	<script src="<?=base_url('vendors/bootstrap/bootstrap.min.js')?>"></script>
 	<script src="<?=base_url('vendors/coreui/js/coreui.min.js')?>"></script>
+	<script src="<?=base_url('assets/style.css')?>"></script>
 	<link rel="icon" href="<?=base_url('assets/logo.png')?>">
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
