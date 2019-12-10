@@ -36,5 +36,5 @@
     </header>
 
     <div class="app-body">
-      
+      <?php $this->load->view($this->session->userdata('role')."/sidebar") ?>
       <main class="main">
