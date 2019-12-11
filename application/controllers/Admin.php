@@ -15,22 +15,22 @@ class Admin extends CI_Controller {
 		$this->load->view('widget/header');
 		if ($action == 'list') {
 			$this->load->view('admin/mahasiswa', [
-				'data' => $this->db->get_where('mahasiswa,prodi','mahasiswa.prodi=prodi.id_prodi')->result()
+				'data' => $this->db->get_where('mahasiswa,prodi','mahasiswa.prodi_mahasiswa=prodi.id_prodi')->result()
 			]);
 		} else if ($action == 'create') {
 			$this->load->view('admin/edit/mahasiswa', [
 				'data' => (object)[
 					'id_mahasiswa' => 0,
-					'nim' => '',
-					'nama_mhs' => '',
-					'prodi' => 0,
+					'nim_mahasiswa' => '',
+					'nama_mahasiswa' => '',
+					'prodi_mahasiswa' => 0,
 					'username' => '',					
 				],
 				'prodi' => $this->db->get_where('prodi')->result()
 			]);
 		} else if ($action == 'edit') {
 			$this->load->view('admin/edit/mahasiswa', [
-				'data' => $this->db->get_where('mahasiswa,prodi,login',"mahasiswa.id_login=login.id_login AND mahasiswa.prodi=prodi.id_prodi AND mahasiswa.id_mahasiswa=$id")->result()[0],
+				'data' => $this->db->get_where('mahasiswa,prodi,login',"mahasiswa.id_login=login.id_login AND mahasiswa.prodi_mahasiswa=prodi.id_prodi AND mahasiswa.id_mahasiswa=$id")->result()[0],
 				'prodi' => $this->db->get_where('prodi')->result()
 			]);
 		} else if ($action == 'delete') {
@@ -40,9 +40,9 @@ class Admin extends CI_Controller {
 			redirect('admin/mahasiswa');
 		} else if ($action == 'update') {
 			$data = [
-				'nim' => $this->input->post('nim'),
-				'nama_mhs' => $this->input->post('nama_mhs'),
-				'prodi' => $this->input->post('prodi'),
+				'nim_mahasiswa' => $this->input->post('nim_mahasiswa'),
+				'nama_mahasiswa' => $this->input->post('nama_mahasiswa'),
+				'prodi_mahasiswa' => $this->input->post('prodi_mahasiswa'),
 			];
 			$dataLogin = [
 				'username' => $this->input->post('username'),
