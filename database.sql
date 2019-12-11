@@ -60,20 +60,20 @@ DROP TABLE IF EXISTS `mahasiswa`;
 CREATE TABLE IF NOT EXISTS `mahasiswa` (
   `id_mahasiswa` int(11) NOT NULL AUTO_INCREMENT,
   `id_login` int(11) NOT NULL,
-  `nim` varchar(50) NOT NULL,
-  `nama_mhs` varchar(20) NOT NULL,
-  `prodi` int(11) NOT NULL,
+  `nim_mahasiswa` varchar(50) NOT NULL,
+  `nama_mahasiswa` varchar(50) NOT NULL,
+  `prodi_mahasiswa` int(11) NOT NULL,
   PRIMARY KEY (`id_mahasiswa`),
-  KEY `FK_mahasiswa_prodi` (`prodi`),
+  KEY `FK_mahasiswa_prodi` (`prodi_mahasiswa`),
   KEY `FK_mahasiswa_login` (`id_login`),
   CONSTRAINT `FK_mahasiswa_login` FOREIGN KEY (`id_login`) REFERENCES `login` (`id_login`),
-  CONSTRAINT `FK_mahasiswa_prodi` FOREIGN KEY (`prodi`) REFERENCES `prodi` (`id_prodi`)
+  CONSTRAINT `FK_mahasiswa_prodi` FOREIGN KEY (`prodi_mahasiswa`) REFERENCES `prodi` (`id_prodi`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table kp_system.mahasiswa: ~1 rows (approximately)
+-- Dumping data for table kp_system.mahasiswa: ~0 rows (approximately)
 DELETE FROM `mahasiswa`;
 /*!40000 ALTER TABLE `mahasiswa` DISABLE KEYS */;
-INSERT INTO `mahasiswa` (`id_mahasiswa`, `id_login`, `nim`, `nama_mhs`, `prodi`) VALUES
+INSERT INTO `mahasiswa` (`id_mahasiswa`, `id_login`, `nim_mahasiswa`, `nama_mahasiswa`, `prodi_mahasiswa`) VALUES
 	(1, 3, '180411100103', 'Faishol Wahyudi', 1);
 /*!40000 ALTER TABLE `mahasiswa` ENABLE KEYS */;
 
@@ -93,6 +93,27 @@ INSERT INTO `prodi` (`id_prodi`, `nama_prodi`) VALUES
 	(2, 'Teknik Industri'),
 	(3, 'Teknik Mekatronika');
 /*!40000 ALTER TABLE `prodi` ENABLE KEYS */;
+
+-- Dumping structure for table kp_system.surat
+DROP TABLE IF EXISTS `surat`;
+CREATE TABLE IF NOT EXISTS `surat` (
+  `id_surat` int(11) NOT NULL AUTO_INCREMENT,
+  `id_mahasiswa` int(11) NOT NULL,
+  `id_pembimbing` int(11) NOT NULL,
+  `nama_perusahaan` varchar(20) NOT NULL,
+  `alamat_perusahaan` varchar(50) NOT NULL,
+  `waktu_kp` date NOT NULL,
+  PRIMARY KEY (`id_surat`),
+  KEY `FK_surat_mahasiswa` (`id_mahasiswa`),
+  KEY `FK_surat_dosen` (`id_pembimbing`),
+  CONSTRAINT `FK_surat_dosen` FOREIGN KEY (`id_pembimbing`) REFERENCES `dosen` (`id_dosen`),
+  CONSTRAINT `FK_surat_mahasiswa` FOREIGN KEY (`id_mahasiswa`) REFERENCES `mahasiswa` (`id_mahasiswa`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table kp_system.surat: ~0 rows (approximately)
+DELETE FROM `surat`;
+/*!40000 ALTER TABLE `surat` DISABLE KEYS */;
+/*!40000 ALTER TABLE `surat` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
