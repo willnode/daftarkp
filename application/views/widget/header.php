@@ -21,7 +21,7 @@
       </button>
       <a class="navbar-brand" href="#">
         <img class="navbar-brand-full" src="<?=base_url('assets/logo.png')?>" width="25" height="25" alt="CoreUI Logo">
-        <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo">
+        <img class="navbar-brand-minimized" src="<?=base_url('assets/logo.png')?>" width="25" height="25" alt="CoreUI Logo">
       </a>
       <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
         <span class="navbar-toggler-icon"></span>
