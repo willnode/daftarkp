@@ -3,7 +3,9 @@
                         <tr>
                           <th>Nama</th>
                           <th>NIP</th>
-                          <th>Action</th>
+                          <th>Action
+                          <a href="<?= base_url("admin/dosen/create")?>" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
