@@ -121,49 +121,27 @@ class Admin extends CI_Controller {
 			$this->load->view('dosen/surat', [
 				'data' => $this->db->get_where('surat, mahasiswa, dosen','mahasiswa.id_mahasiswa=surat.id_mahasiswa and surat.id_pembimbing=dosen.id_dosen' )->result()
 			]);
-		} else if ($action == 'create') {
-			$this->load->view('dosen/edit/surat', [
-				'data' => (object)[
-					'id_surat' => 0,
-					'nim' => '',
-					'nama_mhs' => '',
-					'prodi' => 0,
-					'username' => '',					
-				],
-				'prodi' => $this->db->get_where('prodi')->result()
-			]);
 		} else if ($action == 'edit') {
 			$this->load->view('dosen/edit/surat', [
-				'data' => $this->db->get_where('surat,prodi,login',"surat.id_login=login.id_login AND surat.prodi=prodi.id_prodi AND surat.id_surat=$id")->result()[0],
-				'prodi' => $this->db->get_where('prodi')->result()
+				'data' => $this->db->get_where('surat,mahasiswa,dosen',"mahasiswa.id_mahasiswa=surat.id_mahasiswa and surat.id_pembimbing=dosen.id_dosen AND surat.id_surat=$id")->result()[0],
+				'dosen' => $this->db->get_where('dosen')->result()
 			]);
 		} else if ($action == 'delete') {
 			$id_login = $this->db->get_where('surat', ['id_surat' => $id])->row()->id_login;
 			$this->db->delete('surat', ['id_surat' => $id]);
 			$this->db->delete('login', ['id_login' => $id_login]);
-			redirect('dosen/surat');
+			redirect('admin/surat');
 		} else if ($action == 'update') {
 			$data = [
-				'nim' => $this->input->post('nim'),
-				'nama_mhs' => $this->input->post('nama_mhs'),
-				'prodi' => $this->input->post('prodi'),
+				'id_pembimbing' => $this->input->post('id_pembimbing'),
+				'nama_perusahaan' => $this->input->post('nama_perusahaan'),
+				'alamat_perusahaan' => $this->input->post('alamat_perusahaan'),
+				'jangka_waktu' => $this->input->post('jangka_waktu'),
 			];
-			$dataLogin = [
-				'username' => $this->input->post('username'),
-				'role' => 'surat',
-			];
-			if ($this->input->post('password')) {
-				$dataLogin['password'] = $this->input->post('password');
-			}
-			if ($id == 0) {
-				$this->db->insert('login', $dataLogin);
-				$id_login = $this->db->insert_id();
-				$data['id_login'] = $id_login;
-				$this->db->insert('surat', $data);
-			} else {
-				$this->db->update('surat', $data, ['id_surat' => $id]);
-			}
-			redirect('dosen/surat');
+
+			$this->db->update('surat', $data, ['id_surat' => $id]);
+			
+			redirect('admin/surat');
 		}
 		$this->load->view('widget/footer');
 	}

@@ -1,9 +1,14 @@
-<form class="form-horizontal" action="<?=base_url("admin/mahasiswa/update/$data->id_mahasiswa")?>" method="post"
+<form class="form-horizontal" action="<?=base_url("admin/surat/update/$data->id_surat")?>" method="post"
     enctype="multipart/form-data" name="form">
     <div class="form-group row">
-        <label class="col-md-3 col-form-label" for="dosen_pembimbing">Dosen Pembimbing</label>
+        <label class="col-md-3 col-form-label" for="id_pembimbing">Dosen Pembimbing</label>
         <div class="col-md-9">
-            <input class="form-control" id="dosen_pembimbing" type="text" name="dosen_pembimbing" value="<?= $data->dosen_pembimbing?>">
+            <select class="form-control form-control" id="id_pembimbing" name="id_pembimbing">
+                <?php foreach ($dosen as $d) : ?>
+                <option value="<?= $d->id_dosen ?>" <?=$data->id_pembimbing==$d->id_dosen ? 'selected' : ''?>>
+                    <?= $d->nama_dosen?></option>
+                <?php endforeach ?>
+            </select>
         </div>
     </div>
 
