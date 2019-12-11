@@ -5,10 +5,10 @@
 	<link rel="stylesheet" href="<?=base_url('vendors/font-awesome/css/font-awesome.min.css')?>">
 	<link rel="stylesheet" href="<?=base_url('vendors/coreui/css/style.min.css')?>">
 	<link rel="stylesheet" href="<?=base_url('vendors/coreui/icons/css/coreui-icons.min.css')?>">
+	<link rel="stylesheet" href="<?=base_url('assets/style.css')?>">
 	<script src="<?=base_url('vendors/jquery/jquery.min.js')?>"></script>
 	<script src="<?=base_url('vendors/bootstrap/bootstrap.min.js')?>"></script>
 	<script src="<?=base_url('vendors/coreui/js/coreui.min.js')?>"></script>
-	<script src="<?=base_url('assets/style.css')?>"></script>
 
 	<link rel="icon" href="<?=base_url('assets/logo.png')?>">
 </head>
@@ -38,4 +38,6 @@
 
     <div class="app-body">
       <?php $this->load->view($this->session->userdata('role')."/sidebar") ?>
-      <main class="main">
+      <main class="main py-4">
+        <div class="container-fluid">
+          <div class="animated fadeIn">
