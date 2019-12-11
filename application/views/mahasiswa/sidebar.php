@@ -8,7 +8,7 @@
             </li>
             <li class="nav-title">Pra-KP</li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=base_url('mahasiswa/surat_pengantar')?>">
+              <a class="nav-link" href="<?=base_url('mahasiswa/surat')?>">
                 <i class="nav-icon icon-drop"></i>Surat Pengantar</a>
             </li>
             <li class="nav-item">
@@ -17,24 +17,24 @@
             </li>
             <li class="nav-title">Progres KP</li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=base_url('mahasiswa/daftar_sidang')?>">
+              <a class="nav-link" href="<?=base_url('mahasiswa/daftar')?>">
                 <i class="nav-icon icon-pencil"></i> Pendaftaran Sidang</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=base_url('mahasiswa/jadwal_sidang')?>">
+              <a class="nav-link" href="<?=base_url('mahasiswa/jadwal')?>">
                 <i class="nav-icon icon-pencil"></i> Jadwal Sidang</a>
             </li>
             <li class="nav-title">Post-Sidang KP</li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=base_url('mahasiswa/nilai_sidang')?>">
+              <a class="nav-link" href="<?=base_url('mahasiswa/nilai')?>">
                 <i class="nav-icon icon-pencil"></i> Nilai</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=base_url('mahasiswa/revisi_sidang')?>">
+              <a class="nav-link" href="<?=base_url('mahasiswa/revisi')?>">
                 <i class="nav-icon icon-pencil"></i> Revisi</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=base_url('mahasiswa/berkas_sidang')?>">
+              <a class="nav-link" href="<?=base_url('mahasiswa/berkas')?>">
                 <i class="nav-icon icon-pencil"></i> Pengumpulan Berkas</a>
             </li>
           </ul>

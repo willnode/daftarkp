@@ -11,52 +11,52 @@ class Dosen extends CI_Controller {
 	}
 
 	
-	public function surat_pengantar()
+	public function surat()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('sidang-dosen/surat');
+		$this->load->view('dosen/surat');
 		$this->load->view('widget/footer');
 	}
 
 	public function bimbingan()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('sidang-dosen/bimbingan');
+		$this->load->view('dosen/bimbingan');
 		$this->load->view('widget/footer');
 	}
 
-	public function daftar_sidang()
+	public function daftar()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('sidang-dosen/daftar');
+		$this->load->view('dosen/daftar');
 		$this->load->view('widget/footer');
 	}
 
-	public function jadwal_sidang()
+	public function jadwal()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('sidang-dosen/jadwal');
+		$this->load->view('dosen/jadwal');
 		$this->load->view('widget/footer');
 	}
 
-	public function nilai_sidang()
+	public function nilai()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('sidang-dosen/nilai');
+		$this->load->view('dosen/nilai');
 		$this->load->view('widget/footer');
 	}
 
-	public function revisi_sidang()
+	public function revisi()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('sidang-dosen/revisi');
+		$this->load->view('dosen/revisi');
 		$this->load->view('widget/footer');
 	}
 
-	public function berkas_sidang()
+	public function berkas()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('sidang-dosen/berkas');
+		$this->load->view('dosen/berkas');
 		$this->load->view('widget/footer');
 	}
 

@@ -7,32 +7,42 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=base_url('admin/mhs')?>">
+              <a class="nav-link" href="<?=base_url('admin/mahasiswa')?>">
                 <i class="nav-icon icon-drop"></i>Input Mahasiswa</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=base_url('admin/pengantar')?>">
-                <i class="nav-icon icon-pencil"></i> Rekap Surat Pengantar</a>
+              <a class="nav-link" href="<?=base_url('admin/dosen')?>">
+                <i class="nav-icon icon-pencil"></i>Input Dosen</a>
+            </li>
+            <li class="nav-title">Pra-KP</li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?=base_url('dosen/surat')?>">
+                <i class="nav-icon icon-drop"></i>Surat Pengantar</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=base_url('/daftar-sidang')?>">
+              <a class="nav-link" href="<?=base_url('dosen/bimbingan')?>">
+                <i class="nav-icon icon-pencil"></i> Bimbingan</a>
+            </li>
+            <li class="nav-title">Progres KP</li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?=base_url('dosen/daftar')?>">
                 <i class="nav-icon icon-pencil"></i> Rekap Pendaftaran</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=base_url('/jadwal-sidang')?>">
+              <a class="nav-link" href="<?=base_url('dosen/jadwal')?>">
                 <i class="nav-icon icon-pencil"></i> Rekap Jadwal</a>
             </li>
             <li class="nav-title">Post-Sidang KP</li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=base_url('/nilai-sidang')?>">
+              <a class="nav-link" href="<?=base_url('dosen/nilai')?>">
                 <i class="nav-icon icon-pencil"></i> Rekap Nilai</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=base_url('/revisi-sidang')?>">
+              <a class="nav-link" href="<?=base_url('dosen/revisi')?>">
                 <i class="nav-icon icon-pencil"></i> Rekap Revisi</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=base_url('/berkas-sidang')?>">
+              <a class="nav-link" href="<?=base_url('dosen/berkas')?>">
                 <i class="nav-icon icon-pencil"></i> Rekap Berkas</a>
             </li>
           </ul>

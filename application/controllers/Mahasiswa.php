@@ -10,52 +10,52 @@ class Mahasiswa extends CI_Controller {
 		$this->load->view('widget/footer');
 	}
 
-	public function surat_pengantar()
+	public function surat()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('sidang-mahasiswa/surat');
+		$this->load->view('mahasiswa/surat');
 		$this->load->view('widget/footer');
 	}
 
 	public function bimbingan()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('sidang-mahasiswa/bimbingan');
+		$this->load->view('mahasiswa/bimbingan');
 		$this->load->view('widget/footer');
 	}
 
-	public function daftar_sidang()
+	public function daftar()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('sidang-mahasiswa/daftar');
+		$this->load->view('mahasiswa/daftar');
 		$this->load->view('widget/footer');
 	}
 
-	public function jadwal_sidang()
+	public function jadwal()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('sidang-mahasiswa/jadwal');
+		$this->load->view('mahasiswa/jadwal');
 		$this->load->view('widget/footer');
 	}
 
-	public function nilai_sidang()
+	public function nilai()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('sidang-mahasiswa/nilai');
+		$this->load->view('mahasiswa/nilai');
 		$this->load->view('widget/footer');
 	}
 
-	public function revisi_sidang()
+	public function revisi()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('sidang-mahasiswa/revisi');
+		$this->load->view('mahasiswa/revisi');
 		$this->load->view('widget/footer');
 	}
 
-	public function berkas_sidang()
+	public function berkas()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('sidang-mahasiswa/berkas');
+		$this->load->view('mahasiswa/berkas');
 		$this->load->view('widget/footer');
 	}
 }
