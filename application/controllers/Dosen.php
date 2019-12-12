@@ -33,6 +33,7 @@ class Dosen extends CI_Controller {
 				'nama_perusahaan' => $this->input->post('nama_perusahaan'),
 				'alamat_perusahaan' => $this->input->post('alamat_perusahaan'),
 				'jangka_waktu' => $this->input->post('jangka_waktu'),
+				'verifikasi_koordinator' => $this->input->post('verifikasi_koordinator')
 			];
 
 			$this->db->update('surat', $data, ['id_surat' => $id]);
@@ -64,7 +65,7 @@ class Dosen extends CI_Controller {
 			$data = [
 				'id_pembimbing' => $this->input->post('id_pembimbing'),
 				'topik_bimbingan' => $this->input->post('topik_bimbingan'),
-				//'file_bimbingan' => $this->input->post('file_bimbingan'),
+				'file_bimbingan' => form_file_upload('file_berkas', 'bimbingan')
 			];
 
 			$this->db->update('bimbingan', $data, ['id_bimbingan' => $id]);
@@ -122,7 +123,9 @@ class Dosen extends CI_Controller {
 			redirect('dosen/jadwal');
 		} else if ($action == 'update') {
 			$data = [
-				'waktu' => $this->input->post('waktu')
+				'waktu' => $this->input->post('waktu'),
+				'verifikasi_penguji' => $this->input->post('verifikasi_penguji'),
+				'verifikasi_pembimbing' => $this->input->post('verifikasi_pembimbing')
 			];
 
 			$this->db->update('jadwal', $data, ['id_jadwal' => $id]);
@@ -179,7 +182,8 @@ class Dosen extends CI_Controller {
 			redirect('dosen/revisi');
 		} else if ($action == 'update') {
 			$data = [
-				
+				'file_revisi' => form_file_upload('file_revisi', 'revisi'),
+				'verifikasi_penguji' => $this->input->post('verifikasi_penguji')
 			];
 
 			$this->db->update('revisi', $data, ['id_revisi' => $id]);

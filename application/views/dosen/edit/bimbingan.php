@@ -5,6 +5,6 @@
                         'options'=>$dosen, 'option_key'=>'id_dosen', 'option_value'=>'nama_dosen']) ?>
     
     <?php form_input(['name'=>'topik_bimbingan', 'label'=>'Topik Bimbingan', 'value'=>$data->topik_bimbingan]) ?>
-    <?php form_input(['name'=>'file_bimbingan', 'label'=>'File Bimbingan', 'type'=>'file']) ?>
+    <?php form_file(['name'=>'file_bimbingan', 'label'=>'File Bimbingan', 'folder'=>'bimbingan','value'=>$data->file_bimbingan]) ?>
     <?php form_input(['type'=>'submit', 'class'=>'form-control btn btn-primary', 'value'=>"Submit"]) ?>
 </form>
