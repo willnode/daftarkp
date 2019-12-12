@@ -9,8 +9,13 @@ main::before {
 	background: url(bg.png) right bottom no-repeat !important;
 	opacity: 0.5;
 	pointer-events: none;
+	z-index: -1;
 }
 
-main {
+body {
 	background-color: white !important;
+}
+
+.form-control[type="file"] {
+    padding-bottom: 2.5em;
 }
