@@ -58,8 +58,47 @@ function form_file($attr=[]) {
                             array_keys($attr), $attr
                         ))  ?>>
             <?php endif ?>
-            <?php if (file_exists($file)) : ?>
-            <a href="<?=base_url($file)?>" class="btn btn-info"><i class="fa fa-download"></i> Unduh</a>
+            <?php if ($attr['value'] && file_exists($file)) : ?>
+            <div class="form-control form-control mt-2 p-2 h-auto">
+            <a href="<?=base_url($file)?>" class="btn btn-info mr-auto"><i class="fa fa-download"></i> Unduh</a>
+            <span><?=$attr['value']?></span>
+            </div>
+            <?php endif ?>
+        </div>
+    </div>
+
+    <?php
+}
+
+function form_verifikasi($attr=[]) {
+    $name = isset($attr['name']) ? $attr['name'] : '';
+    $label = isset($attr['label']) ? $attr['label'] : '';
+    $readonly = isset($attr['readonly']); 
+    $attr['class'] = isset($attr['class']) ? $attr['class'] : 'form-control';
+    $opts = implode(' ', array_map(
+                            function ($k, $v) { return $k .'="'. htmlspecialchars($v) .'"'; },
+                            array_keys($attr), $attr
+                        ))
+    ?>
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="<?=$name?>"><?=$label?></label>
+        <div class="col-md-9">
+            <?php if ($readonly) : ?>
+                <label class="btn <?=[''=>'btn-primary','Y'=>'btn-success','N'=>'btn-danger'][$attr['value']]?> active">
+                <?=[''=>'Pending','Y'=>'Disetujui','N'=>'Ditolak'][$attr['value']]?>
+                </label>
+            <?php else : ?>
+            <div class="btn-group btn-group-toggle form-control w-auto h-auto" data-toggle="buttons">
+            <label class="btn btn-outline-primary active">
+                <input type="radio" <?=$opts?> <?=$attr['value'] == '' ? 'checked' : ''?> > Pending
+            </label>
+            <label class="btn btn-outline-success">
+            <input type="radio" <?=$opts?> <?=$attr['value'] == 'Y' ? 'checked' : ''?> > Disetujui
+            </label>
+            <label class="btn btn-outline-danger">
+            <input type="radio" <?=$opts?> <?=$attr['value'] == 'N' ? 'checked' : ''?> > Ditolak
+            </label>
+            </div>
             <?php endif ?>
         </div>
     </div>
@@ -69,8 +108,16 @@ function form_file($attr=[]) {
 
 function form_file_upload($name, $folder)
 {
-    $this->upload->initialize([
+    #mkdir('./uploads/'.$folder.'/');
+    $ci = &get_instance();
+    $ci->upload->initialize([
         'upload_path' => './uploads/'.$folder.'/',
+        'allowed_types' => '*'
     ]);
-    return $this->upload->do_upload($name);
+    if ($ci->upload->do_upload($name)) {
+        return $ci->upload->file_name;    
+    }
+    else {
+        return '';
+    }
 }
