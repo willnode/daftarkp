@@ -93,7 +93,8 @@ class Dosen extends CI_Controller {
 			redirect('dosen/daftar');
 		} else if ($action == 'update') {
 			$data = [
-				'id_penguji' => $this->input->post('id_penguji')
+				'id_penguji' => $this->input->post('id_penguji'),
+				'verifikasi_admin' => $this->input->post('verifikasi_admin')
 			];
 
 			$this->db->update('daftar', $data, ['id_daftar' => $id]);
@@ -206,7 +207,7 @@ class Dosen extends CI_Controller {
 			redirect('dosen/berkas');
 		} else if ($action == 'update') {
 			$data = [
-				
+				'file_berkas' => form_file_upload('file_berkas', 'final')
 			];
 
 			$this->db->update('berkas', $data, ['id_berkas' => $id]);
