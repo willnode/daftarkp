@@ -22,6 +22,9 @@ class Home extends CI_Controller {
 				$user = $result[0];
 				$this->session->username = $user->username;
 				$this->session->role = $user->role;
+				if ($user->role == 'mahasiswa') {
+					$this->session->id_mahasiswa = $this->db->get_where('mahasiswa', ['id_login'=>$user->id_login])->row()->id_mahasiswa;
+				}
 				redirect("$user->role/");
 			}else{
 				$this->load->view('static/login');
