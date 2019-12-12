@@ -27,6 +27,7 @@ class Admin extends Dosen {
 					'nama_mahasiswa' => '',
 					'prodi_mahasiswa' => 0,
 					'username' => '',					
+					'password' => '',
 				],
 				'prodi' => $this->db->get_where('prodi')->result()
 			]);
@@ -80,6 +81,7 @@ class Admin extends Dosen {
 					'nip_dosen' => '',
 					'nama_dosen' => '',
 					'username' => '',					
+					'password' => '',
 				],
 				]);
 		} else if ($action == 'edit') {
@@ -115,6 +117,4 @@ class Admin extends Dosen {
 		}
 		$this->load->view('widget/footer');
 	}
-
-
 }
