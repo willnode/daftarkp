@@ -25,6 +25,7 @@ class Admin extends CI_Controller {
 					'nama_mahasiswa' => '',
 					'prodi_mahasiswa' => 0,
 					'username' => '',					
+					'password' => '',
 				],
 				'prodi' => $this->db->get_where('prodi')->result()
 			]);
@@ -78,6 +79,7 @@ class Admin extends CI_Controller {
 					'nip_dosen' => '',
 					'nama_dosen' => '',
 					'username' => '',					
+					'password' => '',
 				],
 				]);
 		} else if ($action == 'edit') {
@@ -149,7 +151,7 @@ class Admin extends CI_Controller {
 	
 	public function bimbingan()
 	{
-		$this->load->view('widget/header');
+	$this->load->view('widget/header');
 		$this->load->view('dosen/bimbingan');
 		$this->load->view('widget/footer');
 	}
