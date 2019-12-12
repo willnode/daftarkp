@@ -8,10 +8,7 @@
       <th>Alamat Perusahaan</th>
       <th>Jangka Waktu</th>
       <th>Verifikasi Koordinator</th>
-      <th>Action 
-
-      <a href="<?= base_url("admin/surat/create")?>" class="btn btn-primary"><i class="fa fa-plus"></i></a>
-      </th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>

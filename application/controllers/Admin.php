@@ -1,7 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+include_once "Dosen.php";
+
+class Admin extends Dosen {
 
 	public function index()
 	{
@@ -114,79 +116,5 @@ class Admin extends CI_Controller {
 		$this->load->view('widget/footer');
 	}
 
-	public function surat($action='list', $id=0)
-	{
-		$this->load->view('widget/header');
-		if ($action == 'list') {
-			$this->load->view('dosen/surat', [
-				'data' => $this->db->get_where('surat, mahasiswa, dosen','mahasiswa.id_mahasiswa=surat.id_mahasiswa and surat.id_pembimbing=dosen.id_dosen' )->result()
-			]);
-		} else if ($action == 'edit') {
-			$this->load->view('dosen/edit/surat', [
-				'data' => $this->db->get_where('surat,mahasiswa,dosen',"mahasiswa.id_mahasiswa=surat.id_mahasiswa and surat.id_pembimbing=dosen.id_dosen AND surat.id_surat=$id")->result()[0],
-				'dosen' => $this->db->get_where('dosen')->result()
-			]);
-		} else if ($action == 'delete') {
-			$id_login = $this->db->get_where('surat', ['id_surat' => $id])->row()->id_login;
-			$this->db->delete('surat', ['id_surat' => $id]);
-			$this->db->delete('login', ['id_login' => $id_login]);
-			redirect('admin/surat');
-		} else if ($action == 'update') {
-			$data = [
-				'id_pembimbing' => $this->input->post('id_pembimbing'),
-				'nama_perusahaan' => $this->input->post('nama_perusahaan'),
-				'alamat_perusahaan' => $this->input->post('alamat_perusahaan'),
-				'jangka_waktu' => $this->input->post('jangka_waktu'),
-			];
-
-			$this->db->update('surat', $data, ['id_surat' => $id]);
-			
-			redirect('admin/surat');
-		}
-		$this->load->view('widget/footer');
-	}
-
-	
-	public function bimbingan()
-	{
-		$this->load->view('widget/header');
-		$this->load->view('dosen/bimbingan');
-		$this->load->view('widget/footer');
-	}
-
-	public function daftar()
-	{
-		$this->load->view('widget/header');
-		$this->load->view('dosen/daftar');
-		$this->load->view('widget/footer');
-	}
-
-	public function jadwal()
-	{
-		$this->load->view('widget/header');
-		$this->load->view('dosen/jadwal');
-		$this->load->view('widget/footer');
-	}
-
-	public function nilai()
-	{
-		$this->load->view('widget/header');
-		$this->load->view('dosen/nilai');
-		$this->load->view('widget/footer');
-	}
-
-	public function revisi()
-	{
-		$this->load->view('widget/header');
-		$this->load->view('dosen/revisi');
-		$this->load->view('widget/footer');
-	}
-
-	public function berkas()
-	{
-		$this->load->view('widget/header');
-		$this->load->view('dosen/berkas');
-		$this->load->view('widget/footer');
-	}
 
 }

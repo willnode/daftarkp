@@ -1,6 +1,5 @@
 <form class="form-horizontal" action="<?=base_url("admin/surat/update/$data->id_surat")?>" method="post"
     enctype="multipart/form-data" name="form">
-    
     <?php form_option(['name'=>'id_pembimbing', 'label'=>'Dosen Pembimbing', 'value'=>$data->id_pembimbing,
                         'options'=>$dosen, 'option_key'=>'id_dosen', 'option_value'=>'nama_dosen']) ?>
     
