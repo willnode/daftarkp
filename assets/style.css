@@ -6,7 +6,7 @@ main::before {
 	right: 0;
 	top: 0;
 	bottom: 0;
-	background: url(bg.jpg) right bottom no-repeat !important;
+	background: url(bg.png) right bottom no-repeat !important;
 	opacity: 0.5;
 	pointer-events: none;
 }
