@@ -69,10 +69,19 @@ function form_file($attr=[]) {
 
     <?php
 }
+function form_verifikasi_widget($val) {
+    ?>
+    <label class="btn <?=[''=>'btn-primary','Y'=>'btn-success','N'=>'btn-danger'][$val]?> active">
+                <?=[''=>'Pending','Y'=>'Disetujui','N'=>'Ditolak'][$val]?>
+                </label>
+    <?php
+}
 
 function form_verifikasi($attr=[]) {
     $name = isset($attr['name']) ? $attr['name'] : '';
     $label = isset($attr['label']) ? $attr['label'] : '';
+    $value = $attr['value'];
+    unset($attr['value']);
     $readonly = isset($attr['readonly']); 
     $attr['class'] = isset($attr['class']) ? $attr['class'] : 'form-control';
     $opts = implode(' ', array_map(
@@ -84,19 +93,17 @@ function form_verifikasi($attr=[]) {
         <label class="col-md-3 col-form-label" for="<?=$name?>"><?=$label?></label>
         <div class="col-md-9">
             <?php if ($readonly) : ?>
-                <label class="btn <?=[''=>'btn-primary','Y'=>'btn-success','N'=>'btn-danger'][$attr['value']]?> active">
-                <?=[''=>'Pending','Y'=>'Disetujui','N'=>'Ditolak'][$attr['value']]?>
-                </label>
+                <?php form_verifikasi_widget($value) ?>
             <?php else : ?>
             <div class="btn-group btn-group-toggle form-control w-auto h-auto" data-toggle="buttons">
             <label class="btn btn-outline-primary active">
-                <input type="radio" <?=$opts?> <?=$attr['value'] == '' ? 'checked' : ''?> > Pending
+                <input type="radio" <?=$opts?> value="" <?=$value == '' ? 'checked' : ''?> > Pending
             </label>
             <label class="btn btn-outline-success">
-            <input type="radio" <?=$opts?> <?=$attr['value'] == 'Y' ? 'checked' : ''?> > Disetujui
+            <input type="radio" <?=$opts?> value="Y" <?=$value == 'Y' ? 'checked' : ''?> > Disetujui
             </label>
             <label class="btn btn-outline-danger">
-            <input type="radio" <?=$opts?> <?=$attr['value'] == 'N' ? 'checked' : ''?> > Ditolak
+            <input type="radio" <?=$opts?> value="N" <?=$value == 'N' ? 'checked' : ''?> > Ditolak
             </label>
             </div>
             <?php endif ?>
@@ -108,7 +115,9 @@ function form_verifikasi($attr=[]) {
 
 function form_file_upload($name, $folder)
 {
-    #mkdir('./uploads/'.$folder.'/');
+    if (!file_exists("./uploads/$folder/")) {
+        mkdir("./uploads/$folder/", 0777, true);
+    }
     $ci = &get_instance();
     $ci->upload->initialize([
         'upload_path' => './uploads/'.$folder.'/',
