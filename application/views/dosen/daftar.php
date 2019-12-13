@@ -1,3 +1,29 @@
+<<?php if (!$editable) : ?>
+<div class="btn btn-danger">
+    Bukan periode Daftar.
+</div>
+<table class="table table-responsive-sm">
+  <thead>
+    <tr>
+      <th>Nama Mahasiswa</th>
+      <th>NIM Mahasiswa</th>
+      <th>Dosen Penguji</th>
+      <th>Status Verifikasi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($data as $daftar) : ?>
+    <tr>
+      <td><?= $daftar->nama_mahasiswa?></td>
+      <td><?= $daftar->nim_mahasiswa?></td>
+      <td><?= $daftar->nama_dosen?></td>
+      <td><?php form_verifikasi_widget($daftar->verifikasi_admin) ?></td>
+    </tr>
+    <?php endforeach ?>
+  </tbody>
+</table>
+
+<?php else : ?>
 <table class="table table-responsive-sm">
   <thead>
     <tr>
@@ -22,3 +48,4 @@
     <?php endforeach ?>
   </tbody>
 </table>
+<?php endif ?>

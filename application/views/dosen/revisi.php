@@ -1,3 +1,29 @@
+<?php if (!$editable) : ?>
+<div class="btn btn-danger">
+    Bukan periode revisi.
+</div>
+<table class="table table-responsive-sm">
+  <thead>
+    <tr>
+      <th>Nama Mahasiswa</th>
+      <th>NIM Mahasiswa</th>
+      <th>File Bimbingan</th>
+      <th>Status Verifikasi Penguji</th>
+      </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($data as $revisi) : ?>
+    <tr>
+      <td><?= $revisi->nama_mahasiswa?></td>
+      <td><?= $revisi->nim_mahasiswa?></td>
+      <td><?= $revisi->file_revisi?></td>
+      <td><?php form_verifikasi_widget($revisi->verifikasi_penguji) ?></td>
+    </tr>
+    <?php endforeach ?>
+  </tbody>
+</table>
+
+<?php else : ?>
 <table class="table table-responsive-sm">
   <thead>
     <tr>
@@ -22,3 +48,4 @@
     <?php endforeach ?>
   </tbody>
 </table>
+<?php endif ?>

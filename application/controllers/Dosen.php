@@ -17,7 +17,8 @@ class Dosen extends CI_Controller {
 		$this->load->view('widget/header');
 		if ($action == 'list') {
 			$this->load->view('dosen/surat', [
-				'data' => $this->db->get_where('surat, mahasiswa, dosen','mahasiswa.id_mahasiswa=surat.id_mahasiswa and surat.id_pembimbing=dosen.id_dosen' )->result()
+				'data' => $this->db->get_where('surat, mahasiswa, dosen','mahasiswa.id_mahasiswa=surat.id_mahasiswa and surat.id_pembimbing=dosen.id_dosen' )->result(),
+				'editable' => check_config('allow_surat')
 			]);
 		} else if ($action == 'edit') {
 			$this->load->view('dosen/edit/surat', [
@@ -55,7 +56,8 @@ class Dosen extends CI_Controller {
 		$this->load->view('widget/header');
 		if ($action == 'list') {
 			$this->load->view('dosen/bimbingan', [
-				'data' => $this->db->get_where('bimbingan, mahasiswa, dosen','mahasiswa.id_mahasiswa=bimbingan.id_mahasiswa and bimbingan.id_pembimbing=dosen.id_dosen' )->result()
+				'data' => $this->db->get_where('bimbingan, mahasiswa, dosen','mahasiswa.id_mahasiswa=bimbingan.id_mahasiswa and bimbingan.id_pembimbing=dosen.id_dosen' )->result(),
+				'editable' => check_config('allow_bimbingan')
 			]);
 		} else if ($action == 'edit') {
 			$this->load->view('dosen/edit/bimbingan', [
@@ -86,7 +88,8 @@ class Dosen extends CI_Controller {
 		$this->load->view('widget/header');
 		if ($action == 'list') {
 			$this->load->view('dosen/daftar', [
-				'data' => $this->db->get_where('daftar, mahasiswa, dosen','mahasiswa.id_mahasiswa=daftar.id_mahasiswa and daftar.id_penguji=dosen.id_dosen' )->result()
+				'data' => $this->db->get_where('daftar, mahasiswa, dosen','mahasiswa.id_mahasiswa=daftar.id_mahasiswa and daftar.id_penguji=dosen.id_dosen' )->result(),
+				'editable' => check_config('allow_daftar')
 			]);
 		} else if ($action == 'edit') {
 			$data = $this->db->get_where('daftar, mahasiswa, dosen',"mahasiswa.id_mahasiswa=daftar.id_mahasiswa and daftar.id_penguji=dosen.id_dosen AND daftar.id_daftar=$id")->result()[0];
@@ -172,7 +175,8 @@ class Dosen extends CI_Controller {
 		$this->load->view('widget/header');
 		if ($action == 'list') {
 			$this->load->view('dosen/nilai', [
-				'data' => $this->db->get_where('nilai, mahasiswa','mahasiswa.id_mahasiswa=nilai.id_mahasiswa' )->result()
+				'data' => $this->db->get_where('nilai, mahasiswa','mahasiswa.id_mahasiswa=nilai.id_mahasiswa' )->result(),
+				'editable' => check_config('allow_nilai')
 			]);
 		} else if ($action == 'edit') {
 			$this->load->view('dosen/edit/nilai', [
@@ -208,7 +212,8 @@ class Dosen extends CI_Controller {
 				$where[] = 'daftar.id_penguji='.$this->session->id_dosen;
 			}
 			$this->load->view('dosen/revisi', [
-				'data' => $this->db->get_where('revisi, mahasiswa, daftar',join(' AND ', $where))->result()
+				'data' => $this->db->get_where('revisi, mahasiswa, daftar',join(' AND ', $where))->result(),
+				'editable' => check_config('allow_revisi')
 			]);
 		} else if ($action == 'edit') {
 			$this->load->view('dosen/edit/revisi', [

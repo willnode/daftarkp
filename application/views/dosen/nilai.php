@@ -1,3 +1,29 @@
+<?php if (!$editable) : ?>
+<div class="btn btn-danger">
+    Bukan periode menilai.
+</div>
+<table class="table table-responsive-sm">
+  <thead>
+    <tr>
+      <th>Nama Mahasiswa</th>
+      <th>NIM Mahasiswa</th>
+      <th>Nilai Pembimbing</th>
+      <th>Nilai Penguji</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($data as $nilai) : ?>
+    <tr>
+      <td><?= $nilai->nama_mahasiswa?></td>
+      <td><?= $nilai->nim_mahasiswa?></td>
+      <td><?= $nilai->nilai_pembimbing?></td>
+      <td><?= $nilai->nilai_penguji?></td>
+    </tr>
+    <?php endforeach ?>
+  </tbody>
+</table>
+
+<?php else : ?>
 <table class="table table-responsive-sm">
   <thead>
     <tr>
@@ -23,3 +49,4 @@
     <?php endforeach ?>
   </tbody>
 </table>
+<?php endif ?>

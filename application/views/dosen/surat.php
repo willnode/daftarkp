@@ -1,3 +1,36 @@
+<?php if (!$editable) : ?>
+<div class="btn btn-danger">
+    Bukan periode surat.
+</div>
+<table class="table table-responsive-sm">
+  <thead>
+    <tr>
+      <th>Nama Mahasiswa</th>
+      <th>NIM Mahasiswa</th>
+      <th>Dosen Pembimbing</th>
+      <th>Nama Perusahaan</th>
+      <th>Alamat Perusahaan</th>
+      <th>Jangka Waktu</th>
+      <th>Status Verifikasi Koordinator</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($data as $surat) : ?>
+    <tr>
+      <td><?= $surat->nama_mahasiswa?></td>
+      <td><?= $surat->nim_mahasiswa?></td>
+      <td><?= $surat->nama_dosen?></td>
+      <td><?= $surat->nama_perusahaan?></td>
+      <td><?= $surat->alamat_perusahaan?></td>
+      <td><?= $surat->jangka_waktu?></td>
+      <td><?php form_verifikasi_widget($surat->verifikasi_koordinator) ?></td>
+     </td>
+    </tr>
+    <?php endforeach ?>
+  </tbody>
+</table>
+
+<?php else : ?>
 <table class="table table-responsive-sm">
   <thead>
     <tr>
@@ -28,3 +61,4 @@
     <?php endforeach ?>
   </tbody>
 </table>
+<?php endif ?>
