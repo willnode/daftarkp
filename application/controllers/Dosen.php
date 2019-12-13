@@ -6,7 +6,9 @@ class Dosen extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('dosen/home');
+		$this->load->view('dosen/home', [
+			'profil' => $this->db->get_where('dosen', ['id_dosen' => $this->session->id_dosen])->row(),
+		]);
 		$this->load->view('widget/footer');
 	}
 
@@ -37,13 +39,13 @@ class Dosen extends CI_Controller {
 			];
 
 			$this->db->update('surat', $data, ['id_surat' => $id]);
-			
+
 			redirect('dosen/surat');
 		}
 		$this->load->view('widget/footer');
 	}
 
-	
+
 	public function bimbingan($action='list', $id=0)
 	{
 		$this->load->view('widget/header');
@@ -69,7 +71,7 @@ class Dosen extends CI_Controller {
 			];
 
 			$this->db->update('bimbingan', $data, ['id_bimbingan' => $id]);
-			
+
 			redirect('dosen/bimbingan');
 		}
 		$this->load->view('widget/footer');
@@ -99,7 +101,7 @@ class Dosen extends CI_Controller {
 			];
 
 			$this->db->update('daftar', $data, ['id_daftar' => $id]);
-			
+
 			redirect('dosen/daftar');
 		}
 		$this->load->view('widget/footer');
@@ -129,7 +131,7 @@ class Dosen extends CI_Controller {
 			];
 
 			$this->db->update('jadwal', $data, ['id_jadwal' => $id]);
-			
+
 			redirect('dosen/jadwal');
 		}
 		$this->load->view('widget/footer');
@@ -158,7 +160,7 @@ class Dosen extends CI_Controller {
 			];
 
 			$this->db->update('nilai', $data, ['id_nilai' => $id]);
-			
+
 			redirect('dosen/nilai');
 		}
 		$this->load->view('widget/footer');
@@ -187,7 +189,7 @@ class Dosen extends CI_Controller {
 			];
 
 			$this->db->update('revisi', $data, ['id_revisi' => $id]);
-			
+
 			redirect('dosen/revisi');
 		}
 		$this->load->view('widget/footer');
@@ -215,10 +217,10 @@ class Dosen extends CI_Controller {
 			];
 
 			$this->db->update('berkas', $data, ['id_berkas' => $id]);
-			
+
 			redirect('dosen/berkas');
 		}
 		$this->load->view('widget/footer');
-	}	
+	}
 
 }

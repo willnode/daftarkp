@@ -13,10 +13,12 @@
 
 
 -- Dumping database structure for kp_system
+DROP DATABASE IF EXISTS `kp_system`;
 CREATE DATABASE IF NOT EXISTS `kp_system` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `kp_system`;
 
 -- Dumping structure for table kp_system.admin
+DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
   `id_admin` int(11) NOT NULL AUTO_INCREMENT,
   `id_login` int(11) NOT NULL,
@@ -38,6 +40,7 @@ INSERT INTO `admin` (`id_admin`, `id_login`, `nama`, `jabatan`) VALUES
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 -- Dumping structure for table kp_system.berkas
+DROP TABLE IF EXISTS `berkas`;
 CREATE TABLE IF NOT EXISTS `berkas` (
   `id_berkas` int(11) NOT NULL AUTO_INCREMENT,
   `id_mahasiswa` int(11) NOT NULL,
@@ -55,6 +58,7 @@ INSERT INTO `berkas` (`id_berkas`, `id_mahasiswa`, `file_berkas`) VALUES
 /*!40000 ALTER TABLE `berkas` ENABLE KEYS */;
 
 -- Dumping structure for table kp_system.bimbingan
+DROP TABLE IF EXISTS `bimbingan`;
 CREATE TABLE IF NOT EXISTS `bimbingan` (
   `id_bimbingan` int(11) NOT NULL AUTO_INCREMENT,
   `id_mahasiswa` int(11) NOT NULL,
@@ -75,7 +79,29 @@ INSERT INTO `bimbingan` (`id_bimbingan`, `id_mahasiswa`, `id_pembimbing`, `topik
 	(1, 1, 2, 'Topik', NULL);
 /*!40000 ALTER TABLE `bimbingan` ENABLE KEYS */;
 
+-- Dumping structure for table kp_system.config
+DROP TABLE IF EXISTS `config`;
+CREATE TABLE IF NOT EXISTS `config` (
+  `key` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `value` enum('Y','N') NOT NULL DEFAULT 'N',
+  `order` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table kp_system.config: ~5 rows (approximately)
+DELETE FROM `config`;
+/*!40000 ALTER TABLE `config` DISABLE KEYS */;
+INSERT INTO `config` (`key`, `name`, `value`, `order`) VALUES
+	('allow_bimbingan', 'Edit Bimbingan', 'N', 0),
+	('allow_daftar', 'Pendaftaran Sidang', 'N', 0),
+	('allow_nilai', 'Input Nilai (Dosen)', 'N', 0),
+	('allow_revisi', 'Input Revisi Sidang', 'N', 0),
+	('allow_surat', 'Input Surat', 'N', 0);
+/*!40000 ALTER TABLE `config` ENABLE KEYS */;
+
 -- Dumping structure for table kp_system.daftar
+DROP TABLE IF EXISTS `daftar`;
 CREATE TABLE IF NOT EXISTS `daftar` (
   `id_daftar` int(11) NOT NULL AUTO_INCREMENT,
   `id_mahasiswa` int(11) NOT NULL,
@@ -96,6 +122,7 @@ INSERT INTO `daftar` (`id_daftar`, `id_mahasiswa`, `id_penguji`, `verifikasi_adm
 /*!40000 ALTER TABLE `daftar` ENABLE KEYS */;
 
 -- Dumping structure for table kp_system.dosen
+DROP TABLE IF EXISTS `dosen`;
 CREATE TABLE IF NOT EXISTS `dosen` (
   `id_dosen` int(11) NOT NULL AUTO_INCREMENT,
   `id_login` int(11) NOT NULL,
@@ -116,6 +143,7 @@ INSERT INTO `dosen` (`id_dosen`, `id_login`, `nip_dosen`, `nama_dosen`) VALUES
 /*!40000 ALTER TABLE `dosen` ENABLE KEYS */;
 
 -- Dumping structure for table kp_system.jadwal
+DROP TABLE IF EXISTS `jadwal`;
 CREATE TABLE IF NOT EXISTS `jadwal` (
   `id_jadwal` int(11) NOT NULL AUTO_INCREMENT,
   `id_mahasiswa` int(11) NOT NULL,
@@ -135,6 +163,7 @@ INSERT INTO `jadwal` (`id_jadwal`, `id_mahasiswa`, `waktu`, `verifikasi_penguji`
 /*!40000 ALTER TABLE `jadwal` ENABLE KEYS */;
 
 -- Dumping structure for table kp_system.login
+DROP TABLE IF EXISTS `login`;
 CREATE TABLE IF NOT EXISTS `login` (
   `id_login` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL,
@@ -158,6 +187,7 @@ INSERT INTO `login` (`id_login`, `username`, `password`, `role`) VALUES
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 
 -- Dumping structure for table kp_system.mahasiswa
+DROP TABLE IF EXISTS `mahasiswa`;
 CREATE TABLE IF NOT EXISTS `mahasiswa` (
   `id_mahasiswa` int(11) NOT NULL AUTO_INCREMENT,
   `id_login` int(11) NOT NULL,
@@ -179,6 +209,7 @@ INSERT INTO `mahasiswa` (`id_mahasiswa`, `id_login`, `nim_mahasiswa`, `nama_maha
 /*!40000 ALTER TABLE `mahasiswa` ENABLE KEYS */;
 
 -- Dumping structure for table kp_system.nilai
+DROP TABLE IF EXISTS `nilai`;
 CREATE TABLE IF NOT EXISTS `nilai` (
   `id_nilai` int(11) NOT NULL AUTO_INCREMENT,
   `id_mahasiswa` int(11) NOT NULL DEFAULT 0,
@@ -197,6 +228,7 @@ INSERT INTO `nilai` (`id_nilai`, `id_mahasiswa`, `nilai_pembimbing`, `nilai_peng
 /*!40000 ALTER TABLE `nilai` ENABLE KEYS */;
 
 -- Dumping structure for table kp_system.prodi
+DROP TABLE IF EXISTS `prodi`;
 CREATE TABLE IF NOT EXISTS `prodi` (
   `id_prodi` int(11) NOT NULL AUTO_INCREMENT,
   `nama_prodi` varchar(50) DEFAULT NULL,
@@ -213,6 +245,7 @@ INSERT INTO `prodi` (`id_prodi`, `nama_prodi`) VALUES
 /*!40000 ALTER TABLE `prodi` ENABLE KEYS */;
 
 -- Dumping structure for table kp_system.revisi
+DROP TABLE IF EXISTS `revisi`;
 CREATE TABLE IF NOT EXISTS `revisi` (
   `id_revisi` int(11) NOT NULL AUTO_INCREMENT,
   `id_mahasiswa` int(11) NOT NULL,
@@ -231,6 +264,7 @@ INSERT INTO `revisi` (`id_revisi`, `id_mahasiswa`, `file_revisi`, `verifikasi_pe
 /*!40000 ALTER TABLE `revisi` ENABLE KEYS */;
 
 -- Dumping structure for table kp_system.surat
+DROP TABLE IF EXISTS `surat`;
 CREATE TABLE IF NOT EXISTS `surat` (
   `id_surat` int(11) NOT NULL AUTO_INCREMENT,
   `id_mahasiswa` int(11) NOT NULL,

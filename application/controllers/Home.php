@@ -24,8 +24,10 @@ class Home extends CI_Controller {
 				$this->session->role = $user->role;
 				if ($user->role == 'mahasiswa') {
 					$this->session->id_mahasiswa = $this->db->get_where('mahasiswa', ['id_login'=>$user->id_login])->row()->id_mahasiswa;
-				} else {
+				} else if ($user->role == 'dosen') {
 					$this->session->id_dosen = $this->db->get_where('dosen', ['id_login'=>$user->id_login])->row()->id_dosen;
+				} else if ($user->role == 'admin') {
+					$this->session->id_admin = $this->db->get_where('admin', ['id_login'=>$user->id_login])->row()->id_admin;
 				}
 				redirect("$user->role/");
 			}else{

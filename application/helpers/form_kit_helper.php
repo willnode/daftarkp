@@ -18,6 +18,25 @@ function form_input($attr=[]) {
     <?php
 }
 
+function form_textarea($attr=[]) {
+    $name = isset($attr['name']) ? $attr['name'] : '';
+    $label = isset($attr['label']) ? $attr['label'] : '';
+    $attr['class'] = isset($attr['class']) ? $attr['class'] : 'form-control';
+    $value = isset($attr['value']) ? $attr['value'] : '';
+    unset($attr['value'])
+    ?>
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="<?=$name?>"><?=$label?></label>
+        <div class="col-md-9">
+            <textrea id="<?=$name?>" <?= implode(' ', array_map(
+                            function ($k, $v) { return $k .'="'. htmlspecialchars($v) .'"'; },
+                            array_keys($attr), $attr
+                        ))  ?>><?=htmlspecialchars($value)?></textarea>
+        </div>
+    </div>
+
+    <?php
+}
 
 function form_option($attr=[]) {
     $name = isset($attr['name']) ? $attr['name'] : '';
@@ -69,6 +88,7 @@ function form_file($attr=[]) {
 
     <?php
 }
+
 function form_verifikasi_widget($val) {
     ?>
     <label class="btn <?=[''=>'btn-primary','Y'=>'btn-success','N'=>'btn-danger'][$val]?> active">
@@ -82,7 +102,7 @@ function form_verifikasi($attr=[]) {
     $label = isset($attr['label']) ? $attr['label'] : '';
     $value = $attr['value'];
     unset($attr['value']);
-    $readonly = isset($attr['readonly']); 
+    $readonly = isset($attr['readonly']);
     $attr['class'] = isset($attr['class']) ? $attr['class'] : 'form-control';
     $opts = implode(' ', array_map(
                             function ($k, $v) { return $k .'="'. htmlspecialchars($v) .'"'; },
@@ -124,7 +144,7 @@ function form_file_upload($name, $folder)
         'allowed_types' => '*'
     ]);
     if ($ci->upload->do_upload($name)) {
-        return $ci->upload->file_name;    
+        return $ci->upload->file_name;
     }
     else {
         return '';

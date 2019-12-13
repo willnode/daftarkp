@@ -6,7 +6,9 @@ class Mahasiswa extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('widget/header');
-		$this->load->view('mahasiswa/home');
+		$this->load->view('mahasiswa/home', [
+			'profil' => $this->db->get_where('mahasiswa', ['id_mahasiswa' => $this->session->id_mahasiswa])->row(),
+		]);
 		$this->load->view('widget/footer');
 	}
 
@@ -23,7 +25,8 @@ class Mahasiswa extends CI_Controller {
 					'jangka_waktu' => '',
 				],
 				'dosen' => $this->db->get_where('dosen')->result(),
-				'created' => boolval($data)
+				'created' => boolval($data),
+				'editable' => check_config('allow_surat')
 			]);
 		} else if ($action=='update') {
 			$data = [
@@ -36,7 +39,7 @@ class Mahasiswa extends CI_Controller {
 			$this->db->replace('surat', $data);
 			redirect('mahasiswa/surat');
 		}
-		$this->load->view('widget/footer');	
+		$this->load->view('widget/footer');
 	}
 
 
@@ -67,9 +70,9 @@ class Mahasiswa extends CI_Controller {
 			$this->db->replace('bimbingan', $data);
 			redirect('mahasiswa/bimbingan');
 		}
-		$this->load->view('widget/footer');	
+		$this->load->view('widget/footer');
 	}
-	
+
 	public function daftar($action='list',$id=0)
 	{
 		$this->load->view('widget/header');
@@ -85,7 +88,7 @@ class Mahasiswa extends CI_Controller {
 				'dosen' => $this->db->get_where('dosen')->result(),
 				'created' => boolval($data)
 			]);
-		} 
+		}
 		else if ($action == 'update') {
 			$data = [
 				'id_mahasiswa' => $this->session->id_mahasiswa,
@@ -93,7 +96,7 @@ class Mahasiswa extends CI_Controller {
 			];
 
 			$this->db->replace('daftar', $data);
-			
+
 			redirect('mahasiswa/daftar');
 		}
 		$this->load->view('widget/footer');
@@ -135,7 +138,7 @@ class Mahasiswa extends CI_Controller {
 			$this->load->view('mahasiswa/nilai', [
 				'data' => $this->db->get_where('nilai, mahasiswa','mahasiswa.id_mahasiswa=nilai.id_mahasiswa' )->result()[0]
 			]);
-			$this->load->view('widget/footer');	
+			$this->load->view('widget/footer');
 	}
 }
 
@@ -153,7 +156,7 @@ class Mahasiswa extends CI_Controller {
 				],
 				'dosen' => $this->db->get_where('dosen')->result(),
 				'created' => boolval($data)
-			]);	
+			]);
 		} else if ($action=='update') {
 			$data = [
 				'id_revisi' => $this->session->id_revisi,

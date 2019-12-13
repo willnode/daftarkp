@@ -7,8 +7,18 @@ class Admin extends Dosen {
 
 	public function index()
 	{
+		$this->dashboard();
+	}
+
+	public function dashboard($action='list')
+	{
 		$this->load->view('widget/header');
-		$this->load->view('admin/home');
+		if ($action == 'list') {
+		$this->load->view('admin/home', [
+			'config' => $this->db->get('config')->result(),
+			'profil' => $this->db->get_where('admin', ['id_admin' => $this->session->id_admin])->row(),
+		]);
+		}
 		$this->load->view('widget/footer');
 	}
 
@@ -26,7 +36,7 @@ class Admin extends Dosen {
 					'nim_mahasiswa' => '',
 					'nama_mahasiswa' => '',
 					'prodi_mahasiswa' => 0,
-					'username' => '',					
+					'username' => '',
 					'password' => '',
 				],
 				'prodi' => $this->db->get_where('prodi')->result()
@@ -80,7 +90,7 @@ class Admin extends Dosen {
 					'id_dosen' => 0,
 					'nip_dosen' => '',
 					'nama_dosen' => '',
-					'username' => '',					
+					'username' => '',
 					'password' => '',
 				],
 				]);
