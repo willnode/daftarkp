@@ -1,3 +1,32 @@
+<?php if (!$editable) : ?>
+<div class="btn btn-danger">
+    Bukan periode bimbingan.
+</div>
+<table class="table table-responsive-sm">
+  <thead>
+    <tr>
+      <th>Nama Mahasiswa</th>
+      <th>NIM Mahasiswa</th>
+      <th>Dosen Pembimbing</th>
+      <th>Topik Bimbingan</th>
+      <th>File Bimbingan</th>
+       </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($data as $bimbingan) : ?>
+    <tr>
+      <td><?= $bimbingan->nama_mahasiswa?></td>
+      <td><?= $bimbingan->nim_mahasiswa?></td>
+      <td><?= $bimbingan->nama_dosen?></td>
+      <td><?= $bimbingan->topik_bimbingan?></td>
+      <td><?= $bimbingan->file_bimbingan?></td>
+    </tr>
+    <?php endforeach ?>
+  </tbody>
+</table>
+
+<?php else :?>
+
 <table class="table table-responsive-sm">
   <thead>
     <tr>
@@ -24,3 +53,4 @@
     <?php endforeach ?>
   </tbody>
 </table>
+<?php endif ?>
