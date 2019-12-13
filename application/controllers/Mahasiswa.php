@@ -57,7 +57,8 @@ class Mahasiswa extends CI_Controller {
 					'file_bimbingan' => '',
 				],
 				'dosen' => $this->db->get_where('dosen')->result(),
-				'created' => boolval($data)
+				'created' => boolval($data),
+				'editable' => check_config('allow_bimbingan')
 			]);
 		} else if ($action=='update') {
 			$data = [
@@ -86,7 +87,8 @@ class Mahasiswa extends CI_Controller {
 					'verifikasi_admin' => ''
 				],
 				'dosen' => $this->db->get_where('dosen')->result(),
-				'created' => boolval($data)
+				'created' => boolval($data),
+				'editable' => check_config('allow_daftar')
 			]);
 		}
 		else if ($action == 'update') {
@@ -136,7 +138,8 @@ class Mahasiswa extends CI_Controller {
 		$this->load->view('widget/header');
 		if ($action == 'list') {
 			$this->load->view('mahasiswa/nilai', [
-				'data' => $this->db->get_where('nilai, mahasiswa','mahasiswa.id_mahasiswa=nilai.id_mahasiswa' )->result()[0]
+				'data' => $this->db->get_where('nilai, mahasiswa','mahasiswa.id_mahasiswa=nilai.id_mahasiswa' )->result()[0],
+				'editable' => check_config('allow_nilai')
 			]);
 			$this->load->view('widget/footer');
 	}
@@ -155,7 +158,8 @@ class Mahasiswa extends CI_Controller {
 					'verifikasi_penguji' => '',
 				],
 				'dosen' => $this->db->get_where('dosen')->result(),
-				'created' => boolval($data)
+				'created' => boolval($data),
+				'editable' => check_config('allow_revisi')
 			]);
 		} else if ($action=='update') {
 			$data = [
