@@ -25,7 +25,6 @@ class Mahasiswa extends CI_Controller {
 				'dosen' => $this->db->get_where('dosen')->result(),
 				'created' => boolval($data)
 			]);
-			$this->load->view('widget/footer');	
 		} else if ($action=='update') {
 			$data = [
 				'id_mahasiswa' => $this->session->id_mahasiswa,
@@ -37,6 +36,7 @@ class Mahasiswa extends CI_Controller {
 			$this->db->replace('surat', $data);
 			redirect('mahasiswa/surat');
 		}
+		$this->load->view('widget/footer');	
 	}
 
 
@@ -56,7 +56,6 @@ class Mahasiswa extends CI_Controller {
 				'dosen' => $this->db->get_where('dosen')->result(),
 				'created' => boolval($data)
 			]);
-			$this->load->view('widget/footer');	
 		} else if ($action=='update') {
 			$data = [
 				'id_bimbingan' => $this->input->post('id_bimbingan'),
@@ -68,19 +67,64 @@ class Mahasiswa extends CI_Controller {
 			$this->db->replace('bimbingan', $data);
 			redirect('mahasiswa/bimbingan');
 		}
+		$this->load->view('widget/footer');	
 	}
 	
-	public function daftar()
+	public function daftar($action='list',$id=0)
 	{
 		$this->load->view('widget/header');
-		$this->load->view('mahasiswa/home');
+		if ($action == 'list') {
+			$data = $this->db->get_where('daftar, mahasiswa, dosen','mahasiswa.id_mahasiswa=daftar.id_mahasiswa and daftar.id_penguji=dosen.id_dosen',['id_mahasiswa'=>$this->session->id_mahasiswa])->row();
+			$this->load->view('mahasiswa/daftar', [
+				'data' => $data ?? (object)[
+					'id_daftar' => 0,
+					'id_mahasiswa' => 0,
+					'id_penguji' => 0,
+					'verifikasi_admin' => ''
+				],
+				'dosen' => $this->db->get_where('dosen')->result(),
+				'created' => boolval($data)
+			]);
+		} 
+		else if ($action == 'update') {
+			$data = [
+				'id_mahasiswa' => $this->session->id_mahasiswa,
+				'id_penguji' => $this->input->post('id_penguji'),
+			];
+
+			$this->db->replace('daftar', $data);
+			
+			redirect('mahasiswa/daftar');
+		}
 		$this->load->view('widget/footer');
 	}
 
-	public function jadwal()
+	public function jadwal($action='list',$id=0)
 	{
 		$this->load->view('widget/header');
-		$this->load->view('mahasiswa/jadwal');
+		if ($action=='list') {
+			$data =  $this->db->get_where('jadwal', ['id_mahasiswa'=>$this->session->id_mahasiswa])->row();
+			$this->load->view('mahasiswa/jadwal', [
+				'data' => $data ?? (object)[
+					'id_jadwal' => 0,
+					'id_mahasiswa' => 0,
+					'waktu' => '',
+					'verifikasi_penguji' => '',
+					'verifikasi_pembimbing' => '',
+				],
+				'created' => boolval($data)
+			]);
+		} else if ($action=='update') {
+			$data = [
+				'id_jadwal' => $this->session->id_jadwal,
+				'id_mahasiswa' => $this->session->id_mahasiswa,
+				'waktu' => $this->session->waktu,
+				'verifikasi_penguji' => $this->input->post('verifikasi_penguji'),
+				'verifikasi_pembimbing' => $this->input->post('verifikasi_pembimbing'),
+			];
+			$this->db->replace('jadwal', $data);
+			redirect('mahasiswa/jadwal');
+		}
 		$this->load->view('widget/footer');
 	}
 
@@ -109,24 +153,42 @@ class Mahasiswa extends CI_Controller {
 				],
 				'dosen' => $this->db->get_where('dosen')->result(),
 				'created' => boolval($data)
-			]);
-			$this->load->view('widget/footer');	
+			]);	
 		} else if ($action=='update') {
 			$data = [
 				'id_revisi' => $this->session->id_revisi,
 				'id_mahasiswa' => $this->session->id_mahasiswa,
-				'file_revisi' => $this->input->post('file_revisi'),
+				'file_revisi' => form_file_upload('file_revisi', 'revisi'),
 				'verifikasi_penguji' => $this->input->post('verifikasi_penguji'),
 			];
 			$this->db->replace('revisi', $data);
 			redirect('mahasiswa/revisi');
 		}
+		$this->load->view('widget/footer');
 	}
 
-	public function berkas()
+	public function berkas($action='list',$id=0)
 	{
 		$this->load->view('widget/header');
-		$this->load->view('mahasiswa/berkas');
+		if ($action=='list') {
+			$data =  $this->db->get_where('berkas', ['id_mahasiswa'=>$this->session->id_mahasiswa])->row();
+			$this->load->view('mahasiswa/berkas', [
+				'data' => $data ?? (object)[
+					'id_berkas' => 0,
+					'id_mahasiswa' => 0,
+					'file_berkas' => '',
+				],
+				'created' => boolval($data)
+			]);
+		} else if ($action=='update') {
+			$data = [
+				'id_berkas' => $this->input->post('id_berkas'),
+				'id_mahasiswa' => $this->session->id_mahasiswa,
+				'file_berkas' => form_file_upload('file_berkas', 'berkas'),
+			];
+			$this->db->replace('berkas', $data);
+			redirect('mahasiswa/berkas');
+		}
 		$this->load->view('widget/footer');
 	}
 }
