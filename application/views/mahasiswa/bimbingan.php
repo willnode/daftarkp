@@ -1,6 +1,6 @@
 <?php if (!$editable) : ?>
 <div class="btn btn-danger">
-    Bukan periode surat.
+    Bukan periode bimbingan KP
 </div>
 <?php if ($created) : ?>
 <form class="form-horizontal" action="<?=base_url("mahasiswa/bimbingan/update/")?>" method="post"
