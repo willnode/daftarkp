@@ -6,15 +6,17 @@
 		<h3>Status Akun: <?=$profil->jabatan?></h3>
 	</div>
 	<div class="col-md-6">
-	<?php foreach ($config as $c) {
+	<?php if (check_jabatan() == 'Superadmin'){
+	 foreach ($config as $c) {
 		form_option(['name'=>$c->key, 'label'=>$c->name, 'value'=>$c->value,
 					'options'=> [
 						(object)['key'=>'N', 'value'=>'Nonaktif'],
 						(object)['key'=>'Y', 'value'=>'Aktif']
 					], 'option_key'=>'key', 'option_value'=>'value']);
-	} ?>
-    <?php form_input(['type'=>'submit', 'class'=>'form-control btn btn-primary', 'value'=>"Submit"]) ?>
-
+	} 
+	form_input(['type'=>'submit', 'class'=>'form-control btn btn-primary', 'value'=>"Submit"]);
+	}
+	?>
 	</div>
 
 	</div>

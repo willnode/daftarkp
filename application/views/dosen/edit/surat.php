@@ -6,7 +6,10 @@
     <?php form_input(['name'=>'nama_perusahaan', 'label'=>'Nama Perusahaan', 'value'=>$data->nama_perusahaan]) ?>
     <?php form_input(['name'=>'alamat_perusahaan', 'label'=>'Alamat Perusahaan', 'value'=>$data->alamat_perusahaan]) ?>
     <?php form_input(['name'=>'jangka_waktu', 'label'=>'Jangka Waktu', 'value'=>$data->jangka_waktu]) ?>
-    <?php form_verifikasi(['name'=>'verifikasi_koordinator', 'label'=>'Verifikasi Koordinator', 'value'=>$data->verifikasi_koordinator]) ?>
+    <?php if (check_jabatan() == 'Koordinator'){
+        form_verifikasi(['name'=>'verifikasi_koordinator', 'label'=>'Verifikasi Koordinator', 'value'=>$data->verifikasi_koordinator]);    
+    }
+    ?>
     <?php form_input(['type'=>'submit', 'class'=>'form-control btn btn-primary', 'value'=>"Submit"]) ?>
     
 </form>

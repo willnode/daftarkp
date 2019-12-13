@@ -4,6 +4,9 @@ function form_input($attr=[]) {
     $name = isset($attr['name']) ? $attr['name'] : '';
     $label = isset($attr['label']) ? $attr['label'] : '';
     $attr['class'] = isset($attr['class']) ? $attr['class'] : 'form-control';
+    if (isset($attr['disabled']) && !$attr['disabled']) {
+        unset($attr['disabled']);
+    }
     ?>
     <div class="form-group row">
         <label class="col-md-3 col-form-label" for="<?=$name?>"><?=$label?></label>
@@ -43,6 +46,9 @@ function form_option($attr=[]) {
     $label = isset($attr['label']) ? $attr['label'] : '';
     $attr['class'] = isset($attr['class']) ? $attr['class'] : 'form-control';
     $options = $attr['options'];
+    if (isset($attr['disabled']) && !$attr['disabled']) {
+        unset($attr['disabled']);
+    }
     unset($attr['options']);
     ?>
     <div class="form-group row">
@@ -116,13 +122,13 @@ function form_verifikasi($attr=[]) {
                 <?php form_verifikasi_widget($value) ?>
             <?php else : ?>
             <div class="btn-group btn-group-toggle form-control w-auto h-auto" data-toggle="buttons">
-            <label class="btn btn-outline-primary active">
+            <label class="btn btn-outline-primary <?=$value == '' ? 'active' : ''?>">
                 <input type="radio" <?=$opts?> value="" <?=$value == '' ? 'checked' : ''?> > Pending
             </label>
-            <label class="btn btn-outline-success">
+            <label class="btn btn-outline-success <?=$value == 'Y' ? 'active' : ''?>">
             <input type="radio" <?=$opts?> value="Y" <?=$value == 'Y' ? 'checked' : ''?> > Disetujui
             </label>
-            <label class="btn btn-outline-danger">
+            <label class="btn btn-outline-danger <?=$value == 'N' ? 'active' : ''?>">
             <input type="radio" <?=$opts?> value="N" <?=$value == 'N' ? 'checked' : ''?> > Ditolak
             </label>
             </div>

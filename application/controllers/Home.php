@@ -28,6 +28,7 @@ class Home extends CI_Controller {
 					$this->session->id_dosen = $this->db->get_where('dosen', ['id_login'=>$user->id_login])->row()->id_dosen;
 				} else if ($user->role == 'admin') {
 					$this->session->id_admin = $this->db->get_where('admin', ['id_login'=>$user->id_login])->row()->id_admin;
+					$this->session->jabatan = $this->db->get_where('admin', ['id_login'=>$user->id_login])->row()->jabatan;
 				}
 				redirect("$user->role/");
 			}else{

@@ -35,8 +35,12 @@ class Dosen extends CI_Controller {
 				'nama_perusahaan' => $this->input->post('nama_perusahaan'),
 				'alamat_perusahaan' => $this->input->post('alamat_perusahaan'),
 				'jangka_waktu' => $this->input->post('jangka_waktu'),
-				'verifikasi_koordinator' => $this->input->post('verifikasi_koordinator')
+				
 			];
+
+			if (check_jabatan() == 'Koordinator'){
+				$data['verifikasi_koordinator'] = $this->input->post('verifikasi_koordinator');
+			}
 
 			$this->db->update('surat', $data, ['id_surat' => $id]);
 
@@ -85,9 +89,11 @@ class Dosen extends CI_Controller {
 				'data' => $this->db->get_where('daftar, mahasiswa, dosen','mahasiswa.id_mahasiswa=daftar.id_mahasiswa and daftar.id_penguji=dosen.id_dosen' )->result()
 			]);
 		} else if ($action == 'edit') {
+			$data = $this->db->get_where('daftar, mahasiswa, dosen',"mahasiswa.id_mahasiswa=daftar.id_mahasiswa and daftar.id_penguji=dosen.id_dosen AND daftar.id_daftar=$id")->result()[0];
 			$this->load->view('dosen/edit/daftar', [
-				'data' => $this->db->get_where('daftar, mahasiswa, dosen',"mahasiswa.id_mahasiswa=daftar.id_mahasiswa and daftar.id_penguji=dosen.id_dosen AND daftar.id_daftar=$id")->result()[0],
-				'dosen' => $this->db->get_where('dosen')->result()
+				'data' => $data,
+				'dosen' => $this->db->get_where('dosen')->result(),
+				'editable' => $data->verifikasi_admin!='Y' || $this->session->role == 'admin'
 			]);
 		} else if ($action == 'delete') {
 			$id_login = $this->db->get_where('daftar', ['id_daftar' => $id])->row()->id_login;
@@ -170,8 +176,15 @@ class Dosen extends CI_Controller {
 	{
 		$this->load->view('widget/header');
 		if ($action == 'list') {
+			$where = [
+				'mahasiswa.id_mahasiswa=revisi.id_mahasiswa',
+				'daftar.id_mahasiswa=mahasiswa.id_mahasiswa'
+			];
+			if ($this->session->role == 'dosen') {
+				$where[] = 'daftar.id_penguji='.$this->session->id_dosen;
+			}
 			$this->load->view('dosen/revisi', [
-				'data' => $this->db->get_where('revisi, mahasiswa','mahasiswa.id_mahasiswa=revisi.id_mahasiswa' )->result()
+				'data' => $this->db->get_where('revisi, mahasiswa, daftar',join(' AND ', $where))->result()
 			]);
 		} else if ($action == 'edit') {
 			$this->load->view('dosen/edit/revisi', [
