@@ -108,7 +108,7 @@ function form_verifikasi($attr=[]) {
     $label = isset($attr['label']) ? $attr['label'] : '';
     $value = $attr['value'];
     unset($attr['value']);
-    $readonly = isset($attr['readonly']);
+    $readonly = isset($attr['readonly']) && $attr['readonly'];
     $attr['class'] = isset($attr['class']) ? $attr['class'] : 'form-control';
     $opts = implode(' ', array_map(
                             function ($k, $v) { return $k .'="'. htmlspecialchars($v) .'"'; },

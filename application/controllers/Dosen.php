@@ -103,8 +103,12 @@ class Dosen extends CI_Controller {
 		} else if ($action == 'update') {
 			$data = [
 				'id_penguji' => $this->input->post('id_penguji'),
-				'verifikasi_admin' => $this->input->post('verifikasi_admin')
+				
 			];
+
+			if ($this->input->post('verifikasi_admin') !== null) {
+				$data['verifikasi_admin'] = $this->input->post('verifikasi_admin');
+			}
 
 			$this->db->update('daftar', $data, ['id_daftar' => $id]);
 
@@ -117,12 +121,31 @@ class Dosen extends CI_Controller {
 	{
 		$this->load->view('widget/header');
 		if ($action == 'list') {
+			$where = [
+				'mahasiswa.id_mahasiswa=jadwal.id_mahasiswa',
+				'mahasiswa.id_mahasiswa=surat.id_mahasiswa',
+				'mahasiswa.id_mahasiswa=daftar.id_mahasiswa',
+			];
+			if ($this->session->role == 'dosen') {
+				$where[] = '(surat.id_pembimbing='.$this->session->id_dosen.
+				' OR daftar.id_penguji='.$this->session->id_dosen.')';
+			}
 			$this->load->view('dosen/jadwal', [
-				'data' => $this->db->get_where('jadwal, mahasiswa','mahasiswa.id_mahasiswa=jadwal.id_mahasiswa' )->result()
+				'data' => $this->db->get_where('jadwal, mahasiswa, surat, daftar',join(' AND ', $where))->result()
 			]);
 		} else if ($action == 'edit') {
+			$where = [
+				'mahasiswa.id_mahasiswa=jadwal.id_mahasiswa',
+				'mahasiswa.id_mahasiswa=surat.id_mahasiswa',
+				'mahasiswa.id_mahasiswa=daftar.id_mahasiswa',
+				"jadwal.id_jadwal=$id"
+			];
+			$data =  $this->db->get_where('jadwal, mahasiswa, surat, daftar',join(' AND ', $where))->result()[0];
 			$this->load->view('dosen/edit/jadwal', [
-				'data' => $this->db->get_where('jadwal, mahasiswa',"mahasiswa.id_mahasiswa=jadwal.id_mahasiswa AND jadwal.id_jadwal=$id")->result()[0],
+				'data' => $data,
+				'editablePenguji' => $data->id_penguji == $this->session->id_dosen || $this->session->role == 'admin',
+				'editablePembimbing' => $data->id_pembimbing == $this->session->id_dosen || $this->session->role == 'admin',
+				'editable' => $this->session->role == 'admin',
 			]);
 		} else if ($action == 'delete') {
 			$id_login = $this->db->get_where('jadwal', ['id_jadwal' => $id])->row()->id_login;
@@ -130,11 +153,12 @@ class Dosen extends CI_Controller {
 			$this->db->delete('login', ['id_login' => $id_login]);
 			redirect('dosen/jadwal');
 		} else if ($action == 'update') {
-			$data = [
-				'waktu' => $this->input->post('waktu'),
-				'verifikasi_penguji' => $this->input->post('verifikasi_penguji'),
-				'verifikasi_pembimbing' => $this->input->post('verifikasi_pembimbing')
-			];
+			$data = [];
+			foreach (['waktu', 'verifikasi_penguji', 'verifikasi_pembimbing'] as $val) {
+				if ($this->input->post($val) !== null) {
+					$data[$val] = $this->input->post($val);
+				}
+			}
 
 			$this->db->update('jadwal', $data, ['id_jadwal' => $id]);
 
