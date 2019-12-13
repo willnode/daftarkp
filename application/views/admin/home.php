@@ -13,6 +13,7 @@
 						(object)['key'=>'Y', 'value'=>'Aktif']
 					], 'option_key'=>'key', 'option_value'=>'value']);
 	} ?>
+    <?php form_input(['type'=>'submit', 'class'=>'form-control btn btn-primary', 'value'=>"Submit"]) ?>
 
 	</div>
 
