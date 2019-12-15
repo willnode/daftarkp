@@ -12,6 +12,7 @@
       <th>Alamat Perusahaan</th>
       <th>Jangka Waktu</th>
       <th>Status Verifikasi Koordinator</th>
+      <th>File Penolakan<th>
     </tr>
   </thead>
   <tbody>
@@ -24,6 +25,7 @@
       <td><?= $surat->alamat_perusahaan?></td>
       <td><?= $surat->jangka_waktu?></td>
       <td><?php form_verifikasi_widget($surat->verifikasi_koordinator) ?></td>
+      <td><?= $surat->file_surat?></td>
      </td>
     </tr>
     <?php endforeach ?>
@@ -41,6 +43,7 @@
       <th>Alamat Perusahaan</th>
       <th>Jangka Waktu</th>
       <th>Status Verifikasi Koordinator</th>
+      <th>File Penolakan</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -54,6 +57,7 @@
       <td><?= $surat->alamat_perusahaan?></td>
       <td><?= $surat->jangka_waktu?></td>
       <td><?php form_verifikasi_widget($surat->verifikasi_koordinator) ?></td>
+      <td><?= $surat->file_surat?></td>
       <td><a href="<?= base_url("admin/surat/edit/$surat->id_surat") ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a> 
       <a href="<?= base_url("admin/surat/delete/$surat->id_surat")?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
     </td>

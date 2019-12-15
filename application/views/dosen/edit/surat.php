@@ -6,6 +6,7 @@
     <?php form_input(['name'=>'nama_perusahaan', 'label'=>'Nama Perusahaan', 'value'=>$data->nama_perusahaan]) ?>
     <?php form_input(['name'=>'alamat_perusahaan', 'label'=>'Alamat Perusahaan', 'value'=>$data->alamat_perusahaan]) ?>
     <?php form_input(['name'=>'jangka_waktu', 'label'=>'Jangka Waktu', 'value'=>$data->jangka_waktu]) ?>
+    <?php form_file(['name'=>'file_surat', 'label'=>'File Surat', 'folder'=>'surat', 'value'=>$data->file_surat]) ?>
     <?php if (check_jabatan() == 'Koordinator'){
         form_verifikasi(['name'=>'verifikasi_koordinator', 'label'=>'Verifikasi Koordinator', 'value'=>$data->verifikasi_koordinator]);    
     }
