@@ -15,6 +15,14 @@
 					], 'option_key'=>'key', 'option_value'=>'value']);
 	} 
 	form_input(['type'=>'submit', 'class'=>'form-control btn btn-primary', 'value'=>"Submit"]);
+}else if (check_jabatan()=='Admin Prodi') {
+		form_option(['name'=>'allow_daftar', 'label'=>'allow_daftar', 'value'=>'allow_daftar',
+					'options'=> [
+						(object)['key'=>'N', 'value'=>'Nonaktif'],
+						(object)['key'=>'Y', 'value'=>'Aktif']
+					], 'option_key'=>'key', 'option_value'=>'value']);
+		
+	form_input(['type'=>'submit', 'class'=>'form-control btn btn-primary', 'value'=>"Submit"]);
 	}
 	?>
 	</div>

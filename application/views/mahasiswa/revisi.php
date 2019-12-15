@@ -6,6 +6,7 @@
 <form class="form-horizontal" action="<?=base_url("mahasiswa/revisi/update/")?>" method="post"
     enctype="multipart/form-data" name="form">
     <?php form_file(['readonly'=>true,'name'=>'file_revisi', 'label'=>'File Revisi', 'folder'=>'revisi', 'value'=>$data->file_revisi]) ?>
+    <?php form_input(['readonly'=>true,'name'=>'topik_revisi', 'label'=>'Topik Revisi', 'value'=>$data->topik_revisi]) ?>
     <?php form_verifikasi(['readonly'=>true, 'label'=>'Verifikasi Penguji' ,'value'=>$data->verifikasi_penguji]) ?>
     
 </form>
@@ -19,6 +20,7 @@
 <form class="form-horizontal" action="<?=base_url("mahasiswa/revisi/update/")?>" method="post"
     enctype="multipart/form-data" name="form">
     <?php form_file(['name'=>'file_revisi', 'label'=>'File Revisi', 'folder'=>'revisi', 'value'=>$data->file_revisi]) ?>
+    <?php form_input(['name'=>'topik_revisi', 'label'=>'Topik Revisi', 'value'=>$data->topik_revisi]) ?>
     <?php form_verifikasi(['readonly'=>true, 'label'=>'Verifikasi Penguji' ,'value'=>$data->verifikasi_penguji]) ?>
     <?php form_input(['type'=>'submit', 'class'=>'form-control btn btn-primary', 'value'=>"Submit"]) ?>
 </form>

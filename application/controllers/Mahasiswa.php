@@ -155,6 +155,7 @@ class Mahasiswa extends CI_Controller {
 					'id_revisi' => 0,
 					'id_mahasiswa' => 0,
 					'file_revisi' => '',
+					'topik_bimbingan' => '',
 					'verifikasi_penguji' => '',
 				],
 				'dosen' => $this->db->get_where('dosen')->result(),
@@ -166,6 +167,7 @@ class Mahasiswa extends CI_Controller {
 				'id_revisi' => $this->session->id_revisi,
 				'id_mahasiswa' => $this->session->id_mahasiswa,
 				'file_revisi' => form_file_upload('file_revisi', 'revisi'),
+				'topik_revisi' => $this->input->post('topik_revisi'),
 				'verifikasi_penguji' => $this->input->post('verifikasi_penguji'),
 			];
 			$this->db->replace('revisi', $data);

@@ -36,7 +36,7 @@ class Dosen extends CI_Controller {
 				'nama_perusahaan' => $this->input->post('nama_perusahaan'),
 				'alamat_perusahaan' => $this->input->post('alamat_perusahaan'),
 				'jangka_waktu' => $this->input->post('jangka_waktu'),
-				'file_surat' => form_file_upload('file_surat', 'surat'),
+				
 			];
 
 			if (check_jabatan() == 'Koordinator'){
