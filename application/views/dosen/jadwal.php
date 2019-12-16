@@ -6,7 +6,9 @@
       <th>Waktu</th>
       <th>Status Verifikasi Pembimbing</th>
       <th>Status Verifikasi Penguji</th>
-      <th>Action </th>
+      <th>Action 
+        <a href="<?= base_url("dosen/jadwal/create")?>" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+      </th>
     </tr>
   </thead>
   <tbody>

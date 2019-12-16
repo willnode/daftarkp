@@ -84,17 +84,21 @@ class Mahasiswa extends CI_Controller {
 					'id_daftar' => 0,
 					'id_mahasiswa' => 0,
 					'id_penguji' => 0,
-					'verifikasi_admin' => ''
+					'verifikasi_admin' => '',
+					'nilai_lapangan' => 0,
+					'file_daftar' => ''
 				],
 				'dosen' => $this->db->get_where('dosen')->result(),
 				'created' => boolval($data),
-				'editable' => check_config('allow_daftar')
+				'editable' => check_config('allow_daftar'),
 			]);
 		}
 		else if ($action == 'update') {
 			$data = [
 				'id_mahasiswa' => $this->session->id_mahasiswa,
 				'id_penguji' => $this->input->post('id_penguji'),
+				'nilai_lapangan' => $this->input->post('nilai_lapangan'),
+				'file_daftar' => form_file_upload('file_daftar','daftar'),
 			];
 
 			$this->db->replace('daftar', $data);
@@ -138,7 +142,7 @@ class Mahasiswa extends CI_Controller {
 		$this->load->view('widget/header');
 		if ($action == 'list') {
 			$this->load->view('mahasiswa/nilai', [
-				'data' => $this->db->get_where('nilai, mahasiswa','mahasiswa.id_mahasiswa=nilai.id_mahasiswa' )->result()[0],
+				'data' => $this->db->get_where('nilai, daftar, mahasiswa','mahasiswa.id_mahasiswa=nilai.id_mahasiswa AND mahasiswa.id_mahasiswa=daftar.id_mahasiswa' )->result()[0],
 				'editable' => check_config('allow_nilai')
 			]);
 			$this->load->view('widget/footer');

@@ -7,6 +7,8 @@
     enctype="multipart/form-data" name="form">
      <?php form_option(['readonly'=>true,'name'=>'id_penguji', 'label'=>'Dosen Penguji', 'value'=>$data->id_penguji,
                         'options'=>$dosen, 'option_key'=>'id_dosen', 'option_value'=>'nama_dosen']) ?>
+    <?php form_input(['readonly'=>true, 'name'=>'nilai_lapangan', 'label'=>'Nilai Pembimbing Lapangan', 'value'=>$data->nilai_lapangan]) ?>
+    <?php form_file(['readonly'=>true,'name'=>'file_daftar', 'label'=>'File Daftar', 'folder'=>'daftar', 'value'=>$data->file_daftar]) ?>
     <?php form_verifikasi(['readonly'=>true, 'label'=>'Verifikasi Admin' ,'value'=>$data->verifikasi_admin]) ?>
 </form>
 <?php endif ?>
@@ -21,7 +23,9 @@
     enctype="multipart/form-data" name="form">
      <?php form_option(['name'=>'id_penguji', 'label'=>'Dosen Penguji', 'value'=>$data->id_penguji,
                         'options'=>$dosen, 'option_key'=>'id_dosen', 'option_value'=>'nama_dosen']) ?>
-    <?php form_verifikasi(['readonly'=>true, 'label'=>'Verifikasi Admin' ,'value'=>$data->verifikasi_admin]) ?>
+    <?php form_input(['name'=>'nilai_lapangan', 'label'=>'Nilai Pembimbing Lapangan', 'value'=>$data->nilai_lapangan]) ?>                        
+    <?php form_file(['name'=>'file_daftar', 'label'=>'File Daftar', 'folder'=>'daftar', 'value'=>$data->file_daftar]) ?>
+    <?php form_verifikasi(['readonly'=>true, 'label'=>'Verifikasi Admin' ,'value'=>$data->verifikasi_admin]) ?>    
     <?php form_input(['type'=>'submit', 'class'=>'form-control btn btn-primary', 'value'=>"Submit"]) ?>
 </form>
 <?php endif ?>
