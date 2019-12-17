@@ -7,8 +7,8 @@
     <?php form_input(['name'=>'alamat_perusahaan', 'label'=>'Alamat Perusahaan', 'value'=>$data->alamat_perusahaan]) ?>
     <?php form_input(['name'=>'jangka_waktu', 'label'=>'Jangka Waktu', 'value'=>$data->jangka_waktu]) ?>
     <?php form_file(['name'=>'file_surat', 'label'=>'File Surat', 'folder'=>'surat', 'value'=>$data->file_surat]) ?>
-    <?php if (check_jabatan() == 'Koordinator'){
-        form_verifikasi(['name'=>'verifikasi_koordinator', 'label'=>'Verifikasi Koordinator', 'value'=>$data->verifikasi_koordinator]);    
+    <?php if (check_jabatan() == 'Koordinator' || check_jabatan() == 'Superadmin'){
+        form_verifikasi(['name'=>'verifikasi_koordinator', 'label'=>'Verifikasi Koordinator', 'value'=>$data->verifikasi_koordinator]);
     }
     ?>
     <?php form_input(['type'=>'submit', 'class'=>'form-control btn btn-primary', 'value'=>"Submit"]) ?>

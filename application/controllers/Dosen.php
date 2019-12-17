@@ -128,22 +128,25 @@ class Dosen extends CI_Controller {
 				'mahasiswa.id_mahasiswa=jadwal.id_mahasiswa',
 				'mahasiswa.id_mahasiswa=surat.id_mahasiswa',
 				'mahasiswa.id_mahasiswa=daftar.id_mahasiswa',
+				'dosen.id_dosen=daftar.id_penguji',
+				
 			];
 			if ($this->session->role == 'dosen') {
 				$where[] = '(surat.id_pembimbing='.$this->session->id_dosen.
 				' OR daftar.id_penguji='.$this->session->id_dosen.')';
 			}
 			$this->load->view('dosen/jadwal', [
-				'data' => $this->db->get_where('jadwal, mahasiswa, surat, daftar',join(' AND ', $where))->result()
+				'data' => $this->db->get_where('jadwal, mahasiswa,dosen, surat, daftar',join(' AND ', $where))->result()
 			]);
 		} else if ($action == 'edit') {
 			$where = [
 				'mahasiswa.id_mahasiswa=jadwal.id_mahasiswa',
 				'mahasiswa.id_mahasiswa=surat.id_mahasiswa',
 				'mahasiswa.id_mahasiswa=daftar.id_mahasiswa',
+				'dosen.id_dosen=daftar.id_penguji',
 				"jadwal.id_jadwal=$id"
 			];
-			$data =  $this->db->get_where('jadwal, mahasiswa, surat, daftar',join(' AND ', $where))->result()[0];
+			$data =  $this->db->get_where('jadwal, mahasiswa, surat, daftar, dosen',join(' AND ', $where))->result()[0];
 			$this->load->view('dosen/edit/jadwal', [
 				'data' => $data,
 				'editablePenguji' => $data->id_penguji == $this->session->id_dosen || $this->session->role == 'admin',

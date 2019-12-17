@@ -53,6 +53,7 @@ class Mahasiswa extends CI_Controller {
 					'id_bimbingan' => 0,
 					'id_mahasiswa' => 0,
 					'id_pembimbing' => 0,
+					'tanggal' => '',
 					'topik_bimbingan' => '',
 					'file_bimbingan' => '',
 				],
@@ -65,6 +66,7 @@ class Mahasiswa extends CI_Controller {
 				'id_bimbingan' => $this->input->post('id_bimbingan'),
 				'id_mahasiswa' => $this->session->id_mahasiswa,
 				'id_pembimbing' => $this->input->post('id_pembimbing'),
+				'tanggal' => $this->input->post('tanggal'),
 				'topik_bimbingan' => $this->input->post('topik_bimbingan'),
 				'file_bimbingan' => form_file_upload('file_bimbingan', 'bimbingan'),
 			];

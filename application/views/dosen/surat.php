@@ -11,6 +11,7 @@
       <th>Nama Perusahaan</th>
       <th>Alamat Perusahaan</th>
       <th>Jangka Waktu</th>
+      <th>File Penolakan</th>
       <th>Status Verifikasi Koordinator</th>
       <th>File Penolakan<th>
     </tr>
@@ -24,6 +25,7 @@
       <td><?= $surat->nama_perusahaan?></td>
       <td><?= $surat->alamat_perusahaan?></td>
       <td><?= $surat->jangka_waktu?></td>
+      <td><?= $surat->file_surat?></td>
       <td><?php form_verifikasi_widget($surat->verifikasi_koordinator) ?></td>
       <td><?= $surat->file_surat?></td>
      </td>

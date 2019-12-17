@@ -8,6 +8,7 @@
       <th>Nama Mahasiswa</th>
       <th>NIM Mahasiswa</th>
       <th>Dosen Pembimbing</th>
+      <th>Tanggal</th>
       <th>Topik Bimbingan</th>
       <th>File Bimbingan</th>
        </tr>
@@ -18,6 +19,7 @@
       <td><?= $bimbingan->nama_mahasiswa?></td>
       <td><?= $bimbingan->nim_mahasiswa?></td>
       <td><?= $bimbingan->nama_dosen?></td>
+      <td><?= $bimbingan->tanggal?></td>
       <td><?= $bimbingan->topik_bimbingan?></td>
       <td><?= $bimbingan->file_bimbingan?></td>
     </tr>
@@ -33,6 +35,7 @@
       <th>Nama Mahasiswa</th>
       <th>NIM Mahasiswa</th>
       <th>Dosen Pembimbing</th>
+      <th>Tanggal</th>
       <th>Topik Bimbingan</th>
       <th>File Bimbingan</th>
       <th>Action </th>
@@ -44,6 +47,7 @@
       <td><?= $bimbingan->nama_mahasiswa?></td>
       <td><?= $bimbingan->nim_mahasiswa?></td>
       <td><?= $bimbingan->nama_dosen?></td>
+      <td><?= $bimbingan->tanggal?></td>
       <td><?= $bimbingan->topik_bimbingan?></td>
       <td><?= $bimbingan->file_bimbingan?></td>
       <td><a href="<?= base_url("admin/bimbingan/edit/$bimbingan->id_bimbingan") ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a> 
