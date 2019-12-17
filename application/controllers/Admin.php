@@ -19,11 +19,16 @@ class Admin extends Dosen {
 			'profil' => $this->db->get_where('admin', ['id_admin' => $this->session->id_admin])->row(),
 		]);
 		}
-		if ($action == 'update' && check_jabatan()=='Superadmin') {
+		if ($action == 'update') {
+			if ($this->input->post('allow_surat') !== null)
 			$this->db->update('config', ['value' => $this->input->post('allow_surat')], ['key' => 'allow_surat']);
+			if ($this->input->post('allow_bimbingan') !== null)
 			$this->db->update('config', ['value' => $this->input->post('allow_bimbingan')], ['key' => 'allow_bimbingan']);
+			if ($this->input->post('allow_daftar') !== null)
 			$this->db->update('config', ['value' => $this->input->post('allow_daftar')], ['key' => 'allow_daftar']);
+			if ($this->input->post('allow_revisi') !== null)
 			$this->db->update('config', ['value' => $this->input->post('allow_revisi')], ['key' => 'allow_revisi']);
+			if ($this->input->post('allow_nilai') !== null)
 			$this->db->update('config', ['value' => $this->input->post('allow_nilai')], ['key' => 'allow_nilai']);
 			redirect('admin');
 		} else if ($action == 'update' && check_jabatan()=='Admin Prodi'){

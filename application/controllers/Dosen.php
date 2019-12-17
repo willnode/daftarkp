@@ -17,12 +17,14 @@ class Dosen extends CI_Controller {
 		$this->load->view('widget/header');
 		if ($action == 'list') {
 			$this->load->view('dosen/surat', [
-				'data' => $this->db->get_where('surat, mahasiswa, dosen','mahasiswa.id_mahasiswa=surat.id_mahasiswa and surat.id_pembimbing=dosen.id_dosen' )->result(),
+				'data' => $this->db->get_where('surat, mahasiswa, dosen',
+				'mahasiswa.id_mahasiswa=surat.id_mahasiswa and surat.id_pembimbing=dosen.id_dosen' )->result(),
 				'editable' => check_config('allow_surat')
 			]);
 		} else if ($action == 'edit') {
 			$this->load->view('dosen/edit/surat', [
-				'data' => $this->db->get_where('surat,mahasiswa,dosen',"mahasiswa.id_mahasiswa=surat.id_mahasiswa and surat.id_pembimbing=dosen.id_dosen AND surat.id_surat=$id")->result()[0],
+				'data' => $this->db->get_where('surat,mahasiswa,dosen',
+				"mahasiswa.id_mahasiswa=surat.id_mahasiswa and surat.id_pembimbing=dosen.id_dosen AND surat.id_surat=$id")->result()[0],
 				'dosen' => $this->db->get_where('dosen')->result()
 			]);
 		} else if ($action == 'delete') {
@@ -36,7 +38,7 @@ class Dosen extends CI_Controller {
 				'nama_perusahaan' => $this->input->post('nama_perusahaan'),
 				'alamat_perusahaan' => $this->input->post('alamat_perusahaan'),
 				'jangka_waktu' => $this->input->post('jangka_waktu'),
-				
+
 			];
 
 			if (check_jabatan() == 'Koordinator'){
@@ -106,7 +108,7 @@ class Dosen extends CI_Controller {
 		} else if ($action == 'update') {
 			$data = [
 				'id_penguji' => $this->input->post('id_penguji'),
-				
+
 			];
 
 			if ($this->input->post('verifikasi_admin') !== null) {
@@ -129,7 +131,6 @@ class Dosen extends CI_Controller {
 				'mahasiswa.id_mahasiswa=surat.id_mahasiswa',
 				'mahasiswa.id_mahasiswa=daftar.id_mahasiswa',
 				'dosen.id_dosen=daftar.id_penguji',
-				
 			];
 			if ($this->session->role == 'dosen') {
 				$where[] = '(surat.id_pembimbing='.$this->session->id_dosen.
@@ -182,8 +183,18 @@ class Dosen extends CI_Controller {
 				'editable' => check_config('allow_nilai')
 			]);
 		} else if ($action == 'edit') {
+			$where = [
+				'mahasiswa.id_mahasiswa=nilai.id_mahasiswa',
+				'mahasiswa.id_mahasiswa=surat.id_mahasiswa',
+				'mahasiswa.id_mahasiswa=daftar.id_mahasiswa',
+				'dosen.id_dosen=daftar.id_penguji',
+				"nilai.id_nilai=$id"
+			];
+			$data = $this->db->get_where('nilai, mahasiswa, surat, daftar, dosen',join(' AND ', $where))->result()[0];
 			$this->load->view('dosen/edit/nilai', [
-				'data' => $this->db->get_where('nilai, mahasiswa',"mahasiswa.id_mahasiswa=nilai.id_mahasiswa AND nilai.id_nilai=$id")->result()[0],
+				'data' => $data,
+				'editablePenguji' => $data->id_penguji == $this->session->id_dosen || $this->session->role == 'admin',
+				'editablePembimbing' => $data->id_pembimbing == $this->session->id_dosen || $this->session->role == 'admin',
 			]);
 		} else if ($action == 'delete') {
 			$id_login = $this->db->get_where('nilai', ['id_nilai' => $id])->row()->id_login;
@@ -191,10 +202,11 @@ class Dosen extends CI_Controller {
 			$this->db->delete('login', ['id_login' => $id_login]);
 			redirect('dosen/nilai');
 		} else if ($action == 'update') {
-			$data = [
-				'nilai_pembimbing' => $this->input->post('nilai_pembimbing'),
-				'nilai_penguji' => $this->input->post('nilai_penguji')
-			];
+			$data = [];
+			if ( $this->input->post('nilai_pembimbing') !== NULL)
+			$data['nilai_pembimbing'] = $this->input->post('nilai_pembimbing');
+			if ( $this->input->post('nilai_penguji') !== NULL)
+			$data['nilai_penguji'] = $this->input->post('nilai_penguji');
 
 			$this->db->update('nilai', $data, ['id_nilai' => $id]);
 

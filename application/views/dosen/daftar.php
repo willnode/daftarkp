@@ -1,4 +1,4 @@
-<<?php if (!$editable) : ?>
+<?php if (!$editable) : ?>
 <div class="btn btn-danger">
     Bukan periode Daftar.
 </div>
@@ -45,7 +45,7 @@
       <td><?= $daftar->nilai_lapangan?></td>
       <td><?= $daftar->file_daftar?></td>
       <td><?php form_verifikasi_widget($daftar->verifikasi_admin) ?></td>
-      <td><a href="<?= base_url("admin/daftar/edit/$daftar->id_daftar") ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a> 
+      <td><a href="<?= base_url("admin/daftar/edit/$daftar->id_daftar") ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
       <a href="<?= base_url("admin/daftar/delete/$daftar->id_daftar")?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
     </td>
     </tr>
